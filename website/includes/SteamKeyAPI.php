@@ -1,0 +1,4 @@
+<?php
+
+	$api = "05CBD4592CDA76D1C8550C4BD74DDBC6";
+?>
