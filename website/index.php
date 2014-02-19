@@ -8,7 +8,10 @@
 	</head>
 	<body>
 		<!-- Header -->
-		<?php include PAGES . '/header.php'; ?>
+		<?php include PAGES . '/part/header.php'; ?>
+		
+		<!-- Navigation -->
+		<?php include PAGES . '/part/nav.php'; ?>
 		
 		<!-- Content -->
 		<?php
@@ -19,6 +22,6 @@
 		?>	
 		
 		<!-- Footer -->
-		<?php include PAGES . '/footer.php'; ?>
+		<?php include PAGES . '/part/footer.php'; ?>
 	</body>
 </html>

@@ -3,7 +3,7 @@
 class Steam {
 
 	// Stub
-	// TODO: Scrape ID from Steam search.
+	// TODO: Scrape ID from Steam search page.
 	public static function getAppId($title) {
 	
 		return 3910;	
@@ -23,7 +23,7 @@ class Steam {
 	}
 	
 	// Stub
-	// TODO: Search user's Steam library for game with ID "appid".
+	// TODO: Use Steam API to check user library for game with appid === $appid
 	public static function ownedBy($appid, $steamid, $apikey) {
 	
 		return false;

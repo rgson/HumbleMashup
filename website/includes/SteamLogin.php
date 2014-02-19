@@ -1,6 +1,6 @@
 <?php
 
-	include "/classes/LightOpenID.php";
+	include "../config.php";
 
 	$Openid = new LightOpenID("localhost");
 
