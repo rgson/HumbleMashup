@@ -2,55 +2,38 @@
 
 class HumbleBundle {
 
-	private static $bundle_urls = array(
-		'https://www.humblebundle.com/',
-		'https://www.humblebundle.com/weekly/'
-	);
-
 	// Stub
 	// TODO: Scrape Bundle info from Humble Bundle's website (regular and weekly bundles).
-	public static function getBundles() {
+	
+	/*
+	public static function getBundle($url) {
 		
 		return array(
-		
-			'bundle' => array(
 			
-				'title' => 'The Humble Sid Meier Bundle',
-				'picture' => 'https://humblebundle-a.akamaihd.net/static/hashed/07c4d0d64f50d134ea0b32bcac67fd644fe96ab5.svg',
-				'url' => 'https://www.humblebundle.com/',
-				'games' => array(
-				
-					array(
-						
-						'title' => 'Sid Meier\'s Civilization III Complete',
-						'price' => 1.0,
-						'score' => null,
-						'appid' => null,
-						'picture' => null,
-						'url' => null,
-						'owned' => null
-						
-					)
-				
+			'title' => 'The Humble Sid Meier Bundle',
+			'picture' => 'https://humblebundle-a.akamaihd.net/static/hashed/07c4d0d64f50d134ea0b32bcac67fd644fe96ab5.svg',
+			'url' => 'https://www.humblebundle.com/',
+			'games' => array(
+			
+				array(
+					
+					'title' => 'Sid Meier\'s Civilization III Complete',
+					'price' => 1.0,
+					'score' => null,
+					'appid' => null,
+					'picture' => null,
+					'url' => null,
+					'owned' => null
+					
 				)
-				
+			
 			)
-		
+				
 		);
 		
 	}
-	
-	public static function getBundles() {
-	
-		$bundles = array();
-		
-		foreach($bundle_urls as $bundle_url)
-			$bundles[] = self::getBundle($bundle_url);
-			
-		return $bundles;
-	
-	}
-	
+	*/
+
 	public static function getBundle($url) {
 		
 		$dom = new HtmlDom();
@@ -91,6 +74,22 @@ class HumbleBundle {
 	public static function getBundleGames($dom) {
 	
 		//<span class="item-title">
+		
+		return array(
+				
+					array(
+						
+						'title' => 'Sid Meier\'s Civilization III Complete',
+						'price' => 1.0,
+						'score' => null,
+						'appid' => null,
+						'picture' => null,
+						'url' => null,
+						'owned' => null
+						
+					)
+				
+				);
 	
 	}
 

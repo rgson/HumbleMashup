@@ -1,0 +1,12 @@
+Order Allow,Deny
+Allow from all
+
+<Files "bundles.json">
+	Order Deny,Allow
+	Deny from all
+</Files>
+
+
+RewriteEngine On
+RewriteRule ^bundle/([^/]+)/?$ bundle.php?id=$1
+RewriteRule ^bundles/?$ bundles.php
