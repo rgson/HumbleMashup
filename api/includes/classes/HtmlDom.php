@@ -4,7 +4,7 @@ class HtmlDom extends DOMDocument {
 	
 	public function loadHTMLfromURL($url) {
 	
-		$html = file_get_contents($url);
+		$html = file_get_contents($url);		
 		libxml_use_internal_errors(true);
 		
 		if(empty($html))

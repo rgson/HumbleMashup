@@ -6,11 +6,10 @@
 
 	$steamEnabled = isset($_GET['steamkey']) && isset($_GET['steamid']);
 
-	$bundleUrls = json_decode(file_get_contents('bundles.json'), true);
-
-	$bundles = array();
-	foreach($bundleUrls as $url)
-		$bundles[] = HumbleBundle::getBundle($url);
+	$bundles = array(
+		HumbleBundle::getHumbleBundle(),
+		HumbleBundle::getWeeklyBundle()
+	);
 
 	foreach($bundles as $bundle) {
 		foreach($bundle->games as $game) {

@@ -2,63 +2,44 @@
 
 class HumbleBundle {
 
-	// Stub
-	// TODO: Scrape Bundle info from Humble Bundle's website (regular and weekly bundles).
+	// --- Regular bundle
 	
-	/*
-	public static function getBundle($url) {
+	public static function getHumbleBundle() {
 		
-		return array(
-			
-			'title' => 'The Humble Sid Meier Bundle',
-			'picture' => 'https://humblebundle-a.akamaihd.net/static/hashed/07c4d0d64f50d134ea0b32bcac67fd644fe96ab5.svg',
-			'url' => 'https://www.humblebundle.com/',
-			'games' => array(
-			
-				array(
-					
-					'title' => 'Sid Meier\'s Civilization III Complete',
-					'price' => 1.0,
-					'score' => null,
-					'appid' => null,
-					'picture' => null,
-					'url' => null,
-					'owned' => null
-					
-				)
-			
-			)
-				
-		);
-		
-	}
-	*/
-
-	public static function getBundle($url) {
+		$url = 'https://www.humblebundle.com';
 		
 		$dom = new HtmlDom();
-		$dom->loadHTMLfromURL($url);
+		
+		try {
+			$dom->loadHTMLfromURL($url);
+		} catch (Exception $e) {
+			APIOutput::http_response(504, "No response from '$url'.");
+		}
 		
 		$bundle = new Bundle();
-		$bundle->title = self::getBundleTitle($dom);
-		$bundle->picture = self::getBundlePicture($dom);
-		$bundle->games = self::getBundleGames($dom);
+		$bundle->title = self::getHumbleBundleTitle($dom);
+		$bundle->picture = self::getHumbleBundlePicture($dom);
+		$bundle->games = self::getHumbleBundleGames($dom);
 		
 		return $bundle;
 		
 	}
 	
-	public static function getBundleTitle($dom) {
+	private static function getHumbleBundleTitle($dom) {
 	
-		$logo = $dom->getElementsByClass('bundle-logo')->item(0);
-		$img = $logo->getElementsByTagName('img')->item(0);
-		$title = $img->attributes->getNamedItem('alt')->nodeValue;
+		$title = $dom->getElementsByTagName('title')->item(0)->nodeValue;
+		$title = trim($title);
+		
+		$filter = ' (pay what you want and help charity)';
+		$pos = strpos($title, $filter);
+		if($pos)
+			$title = substr($title, 0, $pos);
 		
 		return $title;
 	
 	}
 	
-	public static function getBundlePicture($dom) {
+	private static function getHumbleBundlePicture($dom) {
 	
 		$logo = $dom->getElementsByClass('bundle-logo')->item(0);
 		$img = $logo->getElementsByTagName('img')->item(0);
@@ -71,25 +52,93 @@ class HumbleBundle {
 	//Stub
 	//TODO Gather game titles.
 	//Optional: Gather game price ("beat the average").
-	public static function getBundleGames($dom) {
+	private static function getHumbleBundleGames($dom) {
 	
 		//<span class="item-title">
 		
 		return array(
 				
-					array(
-						
-						'title' => 'Sid Meier\'s Civilization III Complete',
-						'price' => 1.0,
-						'score' => null,
-						'appid' => null,
-						'picture' => null,
-						'url' => null,
-						'owned' => null
-						
-					)
+			array(
 				
-				);
+				'title' => 'Sid Meier\'s Civilization III Complete',
+				'price' => 1.0,
+				'score' => null,
+				'appid' => null,
+				'picture' => null,
+				'url' => null,
+				'owned' => null
+				
+			)
+		
+		);
+	
+	}
+	
+	// --- Weekly bundle
+	
+	public static function getWeeklyBundle() {
+		
+		$url = 'https://www.humblebundle.com/weekly';
+		
+		$dom = new HtmlDom();
+		
+		try {
+			$dom->loadHTMLfromURL($url);
+		} catch (Exception $e) {
+			APIOutput::http_response(504, "No response from '$url'.");
+		}
+		
+		$bundle = new Bundle();
+		$bundle->title = self::getWeeklyBundleTitle($dom);
+		$bundle->picture = self::getWeeklyBundlePicture($dom);
+		$bundle->games = self::getWeeklyBundleGames($dom);
+		
+		return $bundle;
+		
+	}
+	
+	private static function getWeeklyBundleTitle($dom) {
+	
+		$title = $dom->getElementsByTagName('title')->item(0)->nodeValue;
+		$title = trim($title);
+		
+		$filter = ' (pay what you want and help charity)';
+		$pos = strpos($title, $filter);
+		if($pos)
+			$title = substr($title, 0, $pos);
+		
+		return $title;
+	
+	}
+	
+	private static function getWeeklyBundlePicture($css) {
+	
+		return 'https://humblebundle-a.akamaihd.net/static/hashed/ad817362b6a5b20a7521134200b0768383232ce9.svg';
+	
+	}
+	
+	//Stub
+	//TODO Gather game titles.
+	//Optional: Gather game price ("beat the average").
+	private static function getWeeklyBundleGames($dom) {
+	
+		//<span class="item-title">
+		
+		return array(
+				
+			array(
+				
+				'title' => 'Sid Meier\'s Civilization III Complete',
+				'price' => 1.0,
+				'score' => null,
+				'appid' => null,
+				'picture' => null,
+				'url' => null,
+				'owned' => null
+				
+			)
+		
+		);
 	
 	}
 

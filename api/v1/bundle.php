@@ -1,4 +1,5 @@
 <?php
+
 	require '../config.php';
 	
 	if(empty($_GET['id']))
@@ -8,13 +9,17 @@
 		APIOutput::http_response(401, 'No Steam API key provided.');
 
 	$steamEnabled = isset($_GET['steamkey']) && isset($_GET['steamid']);
-
-	$bundleUrls = json_decode(file_get_contents('bundles.json'), true);
-
-	if(!array_key_exists($_GET['id'], $bundleUrls))
+	
+	switch($_GET['id']) {
+	case 'regular':
+		$bundle = HumbleBundle::getHumbleBundle();
+		break;
+	case 'weekly':
+		$bundle = HumbleBundle::getWeeklyBundle();
+		break;
+	default:
 		APIOutput::http_response(401, "Invalid bundle ID: \"{$_GET['id']}\".");
-
-	$bundle = HumbleBundle::getBundle($bundleUrls[$_GET['id']]);
+	}
 
 	foreach($bundle->games as $game) {
 	
