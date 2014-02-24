@@ -1,67 +1,81 @@
 <?php
 
-class Game {
+class Game implements JsonSerializable {
 
 	private $title;
 	private $price;
 	private $score;
 	private $appid;
+	private $picture;
 	private $owned;
 
-	public function __construct($title, $picture, $score, $appid, $owned) {
+	public function __construct($title, $price = 1.0, $score = null, $appid = null, $picture = null, $owned = false) {
 		$this->title = (string) $title;
-		$this->picture = (string) $picture;
+		$this->price = (float) $price;
 		$this->score = (float) $score;
 		$this->appid = (string) $appid;
+		$this->picture = (string) $picture;
 		$this->owned = (bool) $owned;
 	}
 
 	// Title get, set attribut
-	function setTitle($newTitle) {
+	public function getTitle() {
+		return $this->title;
+	}
+	
+	public function setTitle($newTitle) {
 		$this->title = $newTitle;
 	}
 
 	//Picture get, set attribut
-	function setPicture($newPicture) {
+	public function setPicture($newPicture) {
 		$this->picture = $newPicture;
 	}
 
-	function getPicture() {
+	public function getPicture() {
 		return $this->picture;
 	}
 
 	//Score get, set attribut
-	function setScore($newScore) {
+	public function setScore($newScore) {
 		$this->score = $newScore;
 	}
 
-	function getScore() {
+	public function getScore() {
 		return $this->Score;
 	}
 
 	//Appid get, set attribut
-	function setAppid($newAppid) {
+	public function setAppid($newAppid) {
 		$this->appid = $newAppid;
 	}
 
-	function getAppid() {
+	public function getAppid() {
 		return $this->appid;
 	}
 
 	//Owned get, set attribut
-	function setOwned($newOwned) {
+	public function setOwned($newOwned) {
 		$this->owned = $newOwned;
 	}
 
-	function getOwned() {
+	public function getOwned() {
 		return $this->owned;
 	}
-
-	//TODO Member variables: title, price, score, appid, owned
 	
-	//TODO Magic method __get for url and picture
+	public function jsonSerialize() {
 	
-	//TODO Constructor?
+		return array(
+			'title' => $this->title,
+			'price' => $this->price,
+			'score' => $this->score,
+			'appid' => $this->appid,
+			'picture' => $this->picture,
+			'url' => $this->url,
+			'owned' => $this->owned
+		);
+		
+	}
 
 }
 
