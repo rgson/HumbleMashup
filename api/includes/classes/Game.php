@@ -12,9 +12,9 @@ class Game implements JsonSerializable {
 	public function __construct($title, $price = 1.0, $score = null, $appid = null, $picture = null, $owned = false) {
 		$this->title = (string) $title;
 		$this->price = (float) $price;
-		$this->score = (float) $score;
-		$this->appid = (string) $appid;
-		$this->picture = (string) $picture;
+		$this->score = $score;
+		$this->appid = $appid;
+		$this->picture = $picture;
 		$this->owned = (bool) $owned;
 	}
 
@@ -24,7 +24,7 @@ class Game implements JsonSerializable {
 	}
 	
 	public function setTitle($newTitle) {
-		$this->title = $newTitle;
+		$this->title = (string) $newTitle;
 	}
 	
 	// Price get, set attribut
@@ -33,7 +33,7 @@ class Game implements JsonSerializable {
 	}
 	
 	public function setPrice($newPrice) {
-		$this->price = $newPrice;
+		$this->price = (float) $newPrice;
 	}
 
 	public function getScore() {
@@ -69,7 +69,7 @@ class Game implements JsonSerializable {
 
 	//Owned get, set attribut
 	public function setOwned($newOwned) {
-		$this->owned = (isset($newOwned) ? $newOwned : false);
+		$this->owned = (bool) (isset($newOwned) ? $newOwned : false);
 	}
 	
 	/*

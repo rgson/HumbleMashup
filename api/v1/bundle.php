@@ -21,14 +21,23 @@
 		APIOutput::http_response(401, "Invalid bundle ID: \"{$_GET['id']}\".");
 	}
 
-	foreach($bundle->games as $game) {
+	foreach($bundle->getGames() as $game) {
 	
-		$game->score = GiantBomb::getScore($game->title);
-		$game->appid = Steam::getAppId($game->title);
-		$game->picture = Steam::getPicture($game->appid);
+		$score = GiantBomb::getScore($game->getTitle());
+		$appid = Steam::getAppId($game->getTitle());
+		
+		if(isset($appid))
+			$picture = Steam::getPicture($game->getAppid());
+		
+		if(isset($score))	$game->setScore($score);
+		if(isset($appid))	$game->setAppid($appid);
+		if(isset($picture))	$game->setPicture($picture);
 	
-		if($steamEnabled)
-			$game->owned = Steam::ownedBy($game->appid, $_GET['steamid'], $_GET['steamkey']);
+		if($steamEnabled && isset($appid)) {
+			$owned = Steam::ownedBy($game->getAppid(), $_GET['steamid'], $_GET['steamkey']);
+			
+			if(isset($owned))	$game->setOwned($owned);
+		}
 	}
 
 	$response = array(

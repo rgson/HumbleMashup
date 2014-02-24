@@ -12,14 +12,23 @@
 	);
 
 	foreach($bundles as $bundle) {
-		foreach($bundle->games as $game) {
+		foreach($bundle->getGames() as $game) {
+	
+			$score = GiantBomb::getScore($game->getTitle());
+			$appid = Steam::getAppId($game->getTitle());
 		
-			$game->score = GiantBomb::getScore($game->title);
-			$game->appid = Steam::getAppId($game->title);
-			$game->picture = Steam::getPicture($game->appid);
+			if(isset($appid))
+				$picture = Steam::getPicture($game->getAppid());
 		
-			if($steamEnabled)
-				$game->owned = Steam::ownedBy($game->appid, $_GET['steamid'], $_GET['steamkey']);
+			if(isset($score))	$game->setScore($score);
+			if(isset($appid))	$game->setAppid($appid);
+			if(isset($picture))	$game->setPicture($picture);
+	
+			if($steamEnabled && isset($appid)) {
+				$owned = Steam::ownedBy($game->getAppid(), $_GET['steamid'], $_GET['steamkey']);
+			
+				if(isset($owned))	$game->setOwned($owned);
+			}
 		}
 	}
 

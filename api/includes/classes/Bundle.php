@@ -9,8 +9,8 @@ class Bundle implements JsonSerializable {
 
 	public function __construct($title, $picture, $url, array $games = null) {
 		$this->title = (string) $title;
-		$this->picture = (string) $picture;
-		$this->url = (string) $url;
+		$this->picture = $picture;
+		$this->url = $url;
 		$this->games = (isset($games) ? $games : array());
 	}
 
