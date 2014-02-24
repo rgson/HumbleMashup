@@ -1,6 +1,6 @@
 <?php
 
-class Bundle {
+class Bundle implements JsonSerializable {
 
 	private $title;
 	private $picture;
@@ -15,43 +15,54 @@ class Bundle {
 	}
 
 	// Title get, set attribut
-	function setTitle($newTitle) {
+	public function setTitle($newTitle) {
 		$this->title = $newTitle;
 	}
 
-	function getTitle() {
+	public function getTitle() {
 		return $this->title;
 	}
 
 	//Picture get, set attribut
-	function setPicture($newPicture) {
+	public function setPicture($newPicture) {
 		$this->picture = $newPicture;
 	}
 
-	function getPicture() {
+	public function getPicture() {
 		return $this->picture;
 	}
 
 	// Url get, set attribut
-	function setUrl($newUrl) {
+	public function setUrl($newUrl) {
 		$this->url = $newUrl;
 	}
 
-	function getUrl() {
+	public function getUrl() {
 		return $this->url;
 	}
 
 	// Games get, set attribut
-	function setGames(array $newGames) {
+	public function setGames(array $newGames) {
 		$this->games = $newGames;
 	}
 
-	function getGames() {
+	public function getGames() {
 		return $this->games;
 	}
-
-	function addGame($newGame) {
+	
+	public function addGame($newGame) {
 		$this->games[] = $newGame;
+	}
+	
+	public function jsonSerialize() {
+	
+		return array(
+			'title' => $this->title,
+			'picture' => $this->picture,
+			'url' => $this->url,
+			'games' => $this->games
+		);
+	
 	}
 }
 
