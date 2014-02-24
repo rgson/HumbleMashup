@@ -17,7 +17,7 @@ class Bundle {
 
 	// Title get, set attribut
 	function setTitle($newTitle) {
-		this->title = $newTitle;
+		$this->title = $newTitle;
 	}
 
 	function getTitle() {
@@ -26,7 +26,7 @@ class Bundle {
 
 	//Picture get, set attribut
 	function setPicture($newPicture) {
-		this->picture = $newPicture;
+		$this->picture = $newPicture;
 	}
 
 	function getPicture() {
@@ -35,7 +35,7 @@ class Bundle {
 
 	// Url get, set attribut
 	function setUrl($newUrl) {
-		this->url = $newUrl;
+		$this->url = $newUrl;
 	}
 
 	function getUrl() {
@@ -44,7 +44,7 @@ class Bundle {
 
 	// Games get, set attribut
 	function setGames($newGames) {
-		this->games[] = $newGames;
+		$this->games[] = $newGames;
 	}
 
 	function getGames() {
