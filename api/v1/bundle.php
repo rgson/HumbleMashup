@@ -2,20 +2,24 @@
 
 	require '../config.php';
 	
-	if(isset($_GET['steamid']) && !isset($_GET['steamkey']))
+	$steamid = (isset($_GET['steamid']) ? $_GET['steamid'] : null);
+	$steamkey = (isset($_GET['steamkey']) ? $_GET['steamkey'] : null);
+	$bundleid = (isset($_GET['bundle']) ? $_GET['bundle'] : null);
+	
+	if(!empty($steamid) && empty($steamkey))
 		APIOutput::http_response(401, 'Provided SteamID but no Steam API key.');
 	
-	if(empty($_GET['id'])) {
+	if(empty($bundleid)) {
 	
 		$response = array(
 			'success' => true,
-			'user' => $_GET['steamid'],
+			'user' => $steamid,
 			'bundles' => getAllBundles()
 		);
 		
 	} else {
 	
-		switch($_GET['id']) {
+		switch($bundleid) {
 		
 			case 'regular':
 				$bundle = getRegularBundle();
@@ -32,7 +36,7 @@
 			
 		$response = array(
 			'success' => true,
-			'user' => $_GET['steamid'],
+			'user' => $steamid,
 			'bundle' => $bundle
 		);
 		
@@ -44,12 +48,12 @@
 	
 	function fillGame($game) {
 	
-		global $steamEnabled;
+		global $steamkey, $steamid;
 	
 		$score = GiantBomb::getScore($game->getTitle());
 		$appid = Steam::getAppId($game->getTitle());
 		
-		if(isset($appid)) {
+		if(!empty($appid)) {
 			$picture = Steam::getPicture($appid);
 			$url = Steam::getURL($appid);
 		}
@@ -59,8 +63,8 @@
 		if(isset($picture))	$game->setPicture($picture);
 		if(isset($url))		$game->setUrl($url);
 	
-		if(isset($_GET['steamkey']) && isset($_GET['steamid']) && isset($appid)) {
-			$owned = Steam::ownedBy($game->getAppid(), $_GET['steamid'], $_GET['steamkey']);
+		if(!empty($steamid) && !empty($steamkey) && !empty($appid)) {
+			$owned = Steam::ownedBy($appid, $steamid, $steamkey);
 			if(isset($owned))	$game->setOwned($owned);
 		}
 		

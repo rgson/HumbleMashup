@@ -2,5 +2,5 @@ Order Allow,Deny
 Allow from all
 
 RewriteEngine On
-RewriteRule ^bundle/([^/]+)/?$ bundle.php?id=$1 [NC,L]
+RewriteRule ^bundle/([^/]+)/?$ bundle.php?bundle=$1 [NC,L]
 RewriteRule ^bundle/?$ bundle.php [NC,L]

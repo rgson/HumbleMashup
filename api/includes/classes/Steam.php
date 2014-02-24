@@ -4,6 +4,10 @@ class Steam {
 
 	public static function getAppId($title) {
 	
+		$cached = self::checkCachedAppIds($title);
+		if($cached)
+			return $cached;
+	
 		$term = rawurlencode($title);
 		$url = "http://store.steampowered.com/search/?category1=998&term=$term";
 		
@@ -19,9 +23,28 @@ class Steam {
 		$pattern = '%http://store\.steampowered\.com/app/(\d+)/%';
 		$matches = array();
 		preg_match($pattern, $appurl, $matches);
+		$appid = $matches[1];
 		
-		return $matches[1];	// appid
+		self::saveToCache($title, $appid);
+		return $appid;
 		
+	}
+	
+	private static function checkCachedAppIds($title) {
+	
+		$cache = json_decode(file_get_contents(CACHE . '/appid.json'), true);		
+		if(array_key_exists($title, $cache))
+			return $cache[$title];
+		return false;
+	
+	}
+	
+	private static function saveToCache($title, $appid) {
+	
+		$cache = json_decode(file_get_contents(CACHE . '/appid.json'), true);
+		$cache[$title] = $appid;
+		file_put_contents(CACHE . '/appid.json', json_encode($cache));
+	
 	}
 	
 	public static function getPicture($appid) {
