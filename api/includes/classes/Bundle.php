@@ -16,39 +16,39 @@ class Bundle {
 	}
 
 	// Title get, set attribut
-	function SetTitle($newTitle) {
+	function setTitle($newTitle) {
 		this->title = $newTitle;
 	}
 
-	function GetTitle() {
+	function getTitle() {
 		return $this->title;
 	}
 
 	//Picture get, set attribut
-	function SetPicture($newPicture) {
+	function setPicture($newPicture) {
 		this->picture = $newPicture;
 	}
 
-	function GetPicture() {
+	function getPicture() {
 		return $this->picture;
 	}
 
 	// Url get, set attribut
-	function SetUrl($newUrl) {
+	function setUrl($newUrl) {
 		this->url = $newUrl;
 	}
 
-	function GetUrl() {
+	function getUrl() {
 		return $this->url;
 	}
 
 	// Games get, set attribut
-	function SetGames($newGames) {
+	function setGames($newGames) {
 		this->games[] = $newGames;
 	}
 
-	function GetGames() {
-		return $this->games[];
+	function getGames() {
+		return $this->games;
 	}
 
 	//Stub.
