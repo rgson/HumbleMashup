@@ -2,12 +2,12 @@
 
 class Bundle {
 
-	private $title:
+	private $title;
 	private $picture;
 	private $url;
 	private $games;
 
-	public function Construct($title, $picture, $url, $games)
+	public function __construct($title, $picture, $url, $games)
 	{
 		$this->title = (string) $title;
 		$this->picture = (string) $picture;
