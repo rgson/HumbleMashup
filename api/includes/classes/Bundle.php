@@ -7,12 +7,12 @@ class Bundle {
 	private $url;
 	private $games;
 
-	public function __construct($title, $picture, $url, $games)
+	public function __construct($title, $picture, $url, array $games = null)
 	{
 		$this->title = (string) $title;
 		$this->picture = (string) $picture;
 		$this->url = (string) $url;
-		$this->games = array();
+		$this->games = (isset($games) ? $games : array());
 	}
 
 	// Title get, set attribut
@@ -43,16 +43,18 @@ class Bundle {
 	}
 
 	// Games get, set attribut
-	function setGames($newGames) {
-		$this->games[] = $newGames;
+	function setGames(array $newGames) {
+		$this->games = $newGames;
 	}
 
 	function getGames() {
 		return $this->games;
 	}
-
-	//Stub.
-	//TODO Member variables for title, picture, url and games.
+	
+	function addGame($newGame) {
+		$this->games[] = $newGame;
+	}
+	
 }
 
 ?>
