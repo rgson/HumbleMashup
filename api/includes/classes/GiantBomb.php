@@ -6,7 +6,7 @@ class GiantBomb {
 	// TODO: Use Giant Bomb API to get score.
 	public static function getScore($title) {
 	
-		return 9.0;
+		return null;
 	
 	}
 

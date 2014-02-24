@@ -8,18 +8,18 @@ class HumbleBundle {
 		
 		$url = 'https://www.humblebundle.com';
 		
-		$dom = new HtmlDom();
-		
 		try {
-			$dom->loadHTMLfromURL($url);
+			$dom = new HtmlDom($url);
 		} catch (Exception $e) {
 			APIOutput::http_response(504, "No response from '$url'.");
 		}
 		
-		$bundle = new Bundle();
-		$bundle->title = self::getHumbleBundleTitle($dom);
-		$bundle->picture = self::getHumbleBundlePicture($dom);
-		$bundle->games = self::getHumbleBundleGames($dom);
+		$bundle = new Bundle(
+			self::getHumbleBundleTitle($dom),
+			self::getHumbleBundlePicture($dom),
+			$url,
+			self::getHumbleBundleGames($dom)
+		);
 		
 		return $bundle;
 		
@@ -27,7 +27,7 @@ class HumbleBundle {
 	
 	private static function getHumbleBundleTitle($dom) {
 	
-		$title = $dom->getElementsByTagName('title')->item(0)->nodeValue;
+		$title = $dom->query("//title")->item(0)->nodeValue;
 		$title = trim($title);
 		
 		$filter = ' (pay what you want and help charity)';
@@ -40,37 +40,36 @@ class HumbleBundle {
 	}
 	
 	private static function getHumbleBundlePicture($dom) {
-	
-		$logo = $dom->getElementsByClass('bundle-logo')->item(0);
-		$img = $logo->getElementsByTagName('img')->item(0);
-		$picture = $img->attributes->getNamedItem('src')->nodeValue;
+				
+		$picture = $dom->query("//h1[@class='bundle-logo']/img/@src")->item(0)->nodeValue;
 		
 		return $picture;
 	
 	}
 	
-	//Stub
-	//TODO Gather game titles.
-	//Optional: Gather game price ("beat the average").
 	private static function getHumbleBundleGames($dom) {
-	
-		//<span class="item-title">
 		
-		return array(
-				
-			array(
-				
-				'title' => 'Sid Meier\'s Civilization III Complete',
-				'price' => 1.0,
-				'score' => null,
-				'appid' => null,
-				'picture' => null,
-				'url' => null,
-				'owned' => null
-				
-			)
+		$games = array();
 		
-		);
+		$basic_titles = $dom->query("//div[contains(@class,'section')]/ul[contains(@class,'games')]/li[contains(@class,'game')]/a/span[@class='item-title']");
+		
+		$bta_price = $dom->query("//em[@class='price bta']")->item(0)->nodeValue;
+		$bta_titles = $dom->query("//div[contains(h3/@class,'bta-info-heading')]/ul[contains(@class,'games')]/li[contains(@class,'game')]/a/span[@class='item-title']");		
+		
+		for($i = 0; $i < $basic_titles->length; $i++) {
+			$games[] = new Game(
+				trim($basic_titles->item($i)->nodeValue)
+			);
+		}
+		
+		for($i = 0; $i < $bta_titles->length; $i++) {
+			$game = new Game(
+				trim($bta_titles->item($i)->nodeValue),
+				floatval(substr($bta_price, 1))
+			);
+		}
+		
+		return $games;
 	
 	}
 	
@@ -80,18 +79,18 @@ class HumbleBundle {
 		
 		$url = 'https://www.humblebundle.com/weekly';
 		
-		$dom = new HtmlDom();
-		
 		try {
-			$dom->loadHTMLfromURL($url);
+			$dom = new HtmlDom($url);
 		} catch (Exception $e) {
 			APIOutput::http_response(504, "No response from '$url'.");
 		}
 		
-		$bundle = new Bundle();
-		$bundle->title = self::getWeeklyBundleTitle($dom);
-		$bundle->picture = self::getWeeklyBundlePicture($dom);
-		$bundle->games = self::getWeeklyBundleGames($dom);
+		$bundle = new Bundle(
+			self::getWeeklyBundleTitle($dom),
+			self::getWeeklyBundlePicture($dom),
+			$url,
+			self::getWeeklyBundleGames($dom)
+		);
 		
 		return $bundle;
 		
@@ -99,7 +98,7 @@ class HumbleBundle {
 	
 	private static function getWeeklyBundleTitle($dom) {
 	
-		$title = $dom->getElementsByTagName('title')->item(0)->nodeValue;
+		$title = $dom->query("//title")->item(0)->nodeValue;
 		$title = trim($title);
 		
 		$filter = ' (pay what you want and help charity)';
@@ -117,28 +116,39 @@ class HumbleBundle {
 	
 	}
 	
-	//Stub
-	//TODO Gather game titles.
-	//Optional: Gather game price ("beat the average").
 	private static function getWeeklyBundleGames($dom) {
-	
-		//<span class="item-title">
 		
-		return array(
-				
-			array(
-				
-				'title' => 'Sid Meier\'s Civilization III Complete',
-				'price' => 1.0,
-				'score' => null,
-				'appid' => null,
-				'picture' => null,
-				'url' => null,
-				'owned' => null
-				
-			)
+		$games = array();
 		
-		);
+		$basic_titles = $dom->query("//ul[contains(@class,'game-boxes') and not(contains(@class,'bta'))]/li/a/img[@class='game-box']/@alt");
+		
+		$bta_price = $dom->query("//span[@class='price bta']")->item(0)->nodeValue;
+		$bta_titles = $dom->query("//ul[contains(@class,'game-boxes') and contains(@class,'bta')]/li/a/img[@class='game-box']/@alt");
+		
+		$fixed_price = $dom->query("//span[@class='price fixed']")->item(0)->nodeValue;
+		$fixed_titles = $dom->query("//ul[contains(@class,'game-boxes') and not(contains(@class,'bta'))]/li/a[contains(span/@class,'fixed-price-info')]/img[@class='game-box']/@alt");		
+		
+		for($i = 0; $i < $basic_titles->length; $i++) {
+			$games[] = new Game(
+				trim($basic_titles->item($i)->nodeValue)
+			);
+		}
+		
+		for($i = 0; $i < $bta_titles->length; $i++) {
+			$games[] = new Game(
+				trim($bta_titles->item($i)->nodeValue),
+				floatval(substr($bta_price, 1))
+			);
+		}
+		
+		for($i = 0; $i < $fixed_titles->length; $i++) {
+			$games[] = new Game(
+				trim($fixed_titles->item($i)->nodeValue),
+				floatval(substr($fixed_price, 1))
+			);
+		}
+		
+		return $games;
 	
 	}
 
