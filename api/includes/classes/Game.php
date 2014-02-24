@@ -21,10 +21,17 @@ class Game implements JsonSerializable {
 	// Title get, set attribut
 	public function getTitle() {
 		return $this->title;
-	}
 	
 	public function setTitle($newTitle) {
 		$this->title = $newTitle;
+	}
+
+	// Price get, set attribut
+	public function getPrice() {
+		return $this->price;
+	
+	public function setPrice($newPrice) {
+		$this->price = $newPrice;
 	}
 
 	//Picture get, set attribut
