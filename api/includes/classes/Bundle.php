@@ -7,8 +7,7 @@ class Bundle {
 	private $url;
 	private $games;
 
-	public function __construct($title, $picture, $url, $games)
-	{
+	public function __construct($title, $picture, $url, $games) {
 		$this->title = (string) $title;
 		$this->picture = (string) $picture;
 		$this->url = (string) $url;
@@ -50,9 +49,6 @@ class Bundle {
 	function getGames() {
 		return $this->games;
 	}
-
-	//Stub.
-	//TODO Member variables for title, picture, url and games.
 }
 
 ?>
