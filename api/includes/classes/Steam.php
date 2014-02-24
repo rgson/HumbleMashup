@@ -2,11 +2,25 @@
 
 class Steam {
 
-	// Stub
-	// TODO: Scrape ID from Steam search page.
 	public static function getAppId($title) {
 	
-		return null;	
+		$term = rawurlencode($title);
+		$url = "http://store.steampowered.com/search/?category1=998&term=$term";
+		
+		$dom = new HtmlDom($url);
+		
+		$result = $dom->query("//a[@class='search_result_row even']/@href");
+		
+		if ($result->length === 0)	// no matches found
+			return null;
+		
+		$appurl = $result->item(0)->nodeValue;
+		
+		$pattern = '%http://store\.steampowered\.com/app/(\d+)/%';
+		$matches = array();
+		preg_match($pattern, $appurl, $matches);
+		
+		return $matches[1];	// appid
 		
 	}
 	

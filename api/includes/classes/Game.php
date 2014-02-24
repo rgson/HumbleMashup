@@ -7,14 +7,16 @@ class Game implements JsonSerializable {
 	private $score;
 	private $appid;
 	private $picture;
+	private $url;
 	private $owned;
 
-	public function __construct($title, $price = 1.0, $score = null, $appid = null, $picture = null, $owned = false) {
+	public function __construct($title, $price = 1.0, $score = null, $appid = null, $picture = null, $url = null, $owned = false) {
 		$this->title = (string) $title;
 		$this->price = (float) $price;
 		$this->score = $score;
 		$this->appid = $appid;
 		$this->picture = $picture;
+		$this->url = $url;
 		$this->owned = (bool) $owned;
 	}
 
@@ -36,38 +38,47 @@ class Game implements JsonSerializable {
 		$this->price = (float) $newPrice;
 	}
 
+	//Score get, set attribut
 	public function getScore() {
 		return $this->Score;
 	}
 
-	//Score get, set attribut
 	public function setScore($newScore) {
 		$this->score = $newScore;
 	}
 
+	//Appid get, set attribut
 	public function getAppid() {
 		return $this->appid;
 	}
 
-	//Appid get, set attribut
 	public function setAppid($newAppid) {
 		$this->appid = $newAppid;
 	}
 
+	//Picture get, set attribut
 	public function getPicture() {
 		return $this->picture;
 	}
 
-	//Picture get, set attribut
 	public function setPicture($newPicture) {
 		$this->picture = $newPicture;
 	}
 
+	//URL get, set attribut
+	public function getURL() {
+		return $this->url;
+	}
+
+	public function setURL($newUrl) {
+		$this->url = $newUrl;
+	}
+
+	//Owned get, set attribut
 	public function getOwned() {
 		return $this->owned;
 	}
 
-	//Owned get, set attribut
 	public function setOwned($newOwned) {
 		$this->owned = (bool) (isset($newOwned) ? $newOwned : false);
 	}

@@ -26,12 +26,15 @@
 		$score = GiantBomb::getScore($game->getTitle());
 		$appid = Steam::getAppId($game->getTitle());
 		
-		if(isset($appid))
-			$picture = Steam::getPicture($game->getAppid());
+		if(isset($appid)) {
+			$picture = Steam::getPicture($appid);
+			$url = Steam::getURL($appid);
+		}
 		
 		if(isset($score))	$game->setScore($score);
 		if(isset($appid))	$game->setAppid($appid);
 		if(isset($picture))	$game->setPicture($picture);
+		if(isset($url))		$game->setUrl($url);
 	
 		if($steamEnabled && isset($appid)) {
 			$owned = Steam::ownedBy($game->getAppid(), $_GET['steamid'], $_GET['steamkey']);
