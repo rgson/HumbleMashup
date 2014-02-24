@@ -7,16 +7,6 @@
 
 	session_start();
 
-	function get_content($URL)
-	{ 
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($ch, CURLOPT_URL, $URL);
-		$data = curl_exec($ch);
-		curl_close($ch);
-		return $data; 
-	}
-
 	if(!$OpenID->mode)
 	{
 		if(isset($_GET['login']))
@@ -43,15 +33,15 @@
 		if(!isset($_SESSION['T2SteamAuth']))
 		{
 			$_SESSION['T2SteamAuth'] = $OpenID->validate() ? $OpenID->identity : null;
-			$_SESSION['T2SteamID64'] = str_replace("http://steamcommunity.com/openid/id/", "", $_SESSION['T2SteamAuth']);
+			//$_SESSION['T2SteamID64'] = str_replace("http://steamcommunity.com/openid/id/", "", $_SESSION['T2SteamAuth']);
 
 			if($_SESSION['T2SteamAuth']!== null)
 			{
 				$steam64 = str_replace("http://steamcommunity.com/openid/id/", "", $_SESSION['T2SteamAuth']);
 				$profile = file_get_contents("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key={$myKey}&steamids={$steam64}");
-				$buffer = fopen("../cache/{$steam64}.json", "w+");
-				fwrite($buffer, $profile);
-				fclose($buffer);	
+				//$buffer = fopen("../cache/{$steam64}.json", "w+");
+				//fwrite($buffer, $profile);
+				//fclose($buffer);	
 			}
 
 			//header("Location: index.php");
@@ -70,7 +60,7 @@
 		//header("Location: index.php");
 	}
 
-	$steam = json_decode(file_get_contents("../cache/{$_SESSION['T2SteamID64']}.json")); //eller get_content
+	//$steam = json_decode(file_get_contents("../cache/{$_SESSION['T2SteamID64']}.json")); //eller get_content
 
 	echo $login;
 
