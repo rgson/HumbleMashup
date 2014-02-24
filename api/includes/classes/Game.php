@@ -26,14 +26,18 @@ class Game implements JsonSerializable {
 	public function setTitle($newTitle) {
 		$this->title = $newTitle;
 	}
-
-	//Price get, set attribut
-	public function setPrice($newPrice) {
-		$this->price = (isset($newPrice) ? $newPrice : 1.0);
-	}
-
+	
+	// Price get, set attribut
 	public function getPrice() {
 		return $this->price;
+	}
+	
+	public function setPrice($newPrice) {
+		$this->price = $newPrice;
+	}
+
+	public function getScore() {
+		return $this->Score;
 	}
 
 	//Score get, set attribut
@@ -41,8 +45,8 @@ class Game implements JsonSerializable {
 		$this->score = $newScore;
 	}
 
-	public function getScore() {
-		return $this->Score;
+	public function getAppid() {
+		return $this->appid;
 	}
 
 	//Appid get, set attribut
@@ -50,8 +54,8 @@ class Game implements JsonSerializable {
 		$this->appid = $newAppid;
 	}
 
-	public function getAppid() {
-		return $this->appid;
+	public function getPicture() {
+		return $this->picture;
 	}
 
 	//Picture get, set attribut
@@ -59,17 +63,13 @@ class Game implements JsonSerializable {
 		$this->picture = $newPicture;
 	}
 
-	public function getPicture() {
-		return $this->picture;
+	public function getOwned() {
+		return $this->owned;
 	}
 
 	//Owned get, set attribut
 	public function setOwned($newOwned) {
 		$this->owned = (isset($newOwned) ? $newOwned : false);
-	}
-
-	public function getOwned() {
-		return $this->owned;
 	}
 	
 	/*
