@@ -1,0 +1,22 @@
+{
+	"response": {
+		"players": [
+			{
+				"steamid": "76561197960484145",
+				"communityvisibilitystate": 3,
+				"profilestate": 1,
+				"personaname": "Linus",
+				"lastlogoff": 1393201110,
+				"profileurl": "http://steamcommunity.com/profiles/76561197960484145/",
+				"avatar": "http://media.steampowered.com/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb.jpg",
+				"avatarmedium": "http://media.steampowered.com/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg",
+				"avatarfull": "http://media.steampowered.com/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_full.jpg",
+				"personastate": 1,
+				"primaryclanid": "103582791433900264",
+				"timecreated": 1063448217,
+				"personastateflags": 0
+			}
+		]
+		
+	}
+}
