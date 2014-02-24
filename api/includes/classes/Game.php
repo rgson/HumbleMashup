@@ -27,13 +27,13 @@ class Game implements JsonSerializable {
 		$this->title = $newTitle;
 	}
 
-	//Picture get, set attribut
-	public function setPicture($newPicture) {
-		$this->picture = $newPicture;
+	//Price get, set attribut
+	public function setPrice($newPrice) {
+		$this->price = (isset($newPrice) ? $newPrice : 1.0);
 	}
 
-	public function getPicture() {
-		return $this->picture;
+	public function getPrice() {
+		return $this->price;
 	}
 
 	//Score get, set attribut
@@ -54,15 +54,29 @@ class Game implements JsonSerializable {
 		return $this->appid;
 	}
 
+	//Picture get, set attribut
+	public function setPicture($newPicture) {
+		$this->picture = $newPicture;
+	}
+
+	public function getPicture() {
+		return $this->picture;
+	}
+
 	//Owned get, set attribut
 	public function setOwned($newOwned) {
-		$this->owned = $newOwned;
+		$this->owned = (isset($newOwned) ? $newOwned : false);
 	}
 
 	public function getOwned() {
 		return $this->owned;
 	}
 	
+	/*
+	*	Implementerar JsonSerializable för att tillåta
+	*	automatisk serialisering med json_encode()
+	*	trots att klassens properties är private.
+	*/
 	public function jsonSerialize() {
 	
 		return array(

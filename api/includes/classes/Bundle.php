@@ -54,6 +54,11 @@ class Bundle implements JsonSerializable {
 		$this->games[] = $newGame;
 	}
 	
+	/*
+	*	Implementerar JsonSerializable för att tillåta
+	*	automatisk serialisering med json_encode()
+	*	trots att klassens properties är private.
+	*/
 	public function jsonSerialize() {
 	
 		return array(
@@ -64,6 +69,7 @@ class Bundle implements JsonSerializable {
 		);
 	
 	}
+	
 }
 
 ?>
