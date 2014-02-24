@@ -3,4 +3,4 @@ Allow from all
 
 RewriteEngine On
 RewriteRule ^bundle/([^/]+)/?$ bundle.php?id=$1 [NC,L]
-RewriteRule ^bundles/?$ bundles.php [NC,L]
+RewriteRule ^bundle/?$ bundle.php [NC,L]
