@@ -7,8 +7,7 @@ class Bundle implements JsonSerializable {
 	private $url;
 	private $games;
 
-	public function __construct($title, $picture, $url, array $games = null)
-	{
+	public function __construct($title, $picture, $url, array $games = null) {
 		$this->title = (string) $title;
 		$this->picture = (string) $picture;
 		$this->url = (string) $url;
@@ -65,7 +64,6 @@ class Bundle implements JsonSerializable {
 		);
 	
 	}
-	
 }
 
 ?>
