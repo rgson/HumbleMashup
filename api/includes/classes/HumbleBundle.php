@@ -120,7 +120,7 @@ class HumbleBundle {
 		
 		$games = array();
 		
-		$basic_titles = $dom->query("//ul[contains(@class,'game-boxes') and not(contains(@class,'bta'))]/li/a/img[@class='game-box']/@alt");
+		$basic_titles = $dom->query("//ul[contains(@class,'game-boxes') and not(contains(@class,'bta'))]/li/a[not(contains(span/@class,'fixed-price-info'))]/img[@class='game-box']/@alt");
 		
 		$bta_price = $dom->query("//span[@class='price bta']")->item(0)->nodeValue;
 		$bta_titles = $dom->query("//ul[contains(@class,'game-boxes') and contains(@class,'bta')]/li/a/img[@class='game-box']/@alt");

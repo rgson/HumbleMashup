@@ -2,50 +2,103 @@
 
 	require '../config.php';
 	
-	if(empty($_GET['id']))
-		APIOutput::http_response(401, 'No bundle specified.');
+	$steamid = (isset($_GET['steamid']) ? $_GET['steamid'] : null);
+	$steamkey = (isset($_GET['steamkey']) ? $_GET['steamkey'] : null);
+	$bundleid = (isset($_GET['bundle']) ? $_GET['bundle'] : null);
 	
-	if(isset($_GET['steamid']) && !isset($_GET['steamkey']))
-		APIOutput::http_response(401, 'No Steam API key provided.');
-
-	$steamEnabled = isset($_GET['steamkey']) && isset($_GET['steamid']);
+	if(!empty($steamid) && empty($steamkey))
+		APIOutput::http_response(401, 'Provided SteamID but no Steam API key.');
 	
-	switch($_GET['id']) {
-	case 'regular':
-		$bundle = HumbleBundle::getHumbleBundle();
-		break;
-	case 'weekly':
-		$bundle = HumbleBundle::getWeeklyBundle();
-		break;
-	default:
-		APIOutput::http_response(401, "Invalid bundle ID: \"{$_GET['id']}\".");
+	if(empty($bundleid)) {
+	
+		$response = array(
+			'success' => true,
+			'user' => $steamid,
+			'bundles' => getAllBundles()
+		);
+		
+	} else {
+	
+		switch($bundleid) {
+		
+			case 'regular':
+				$bundle = getRegularBundle();
+				break;
+			
+			case 'weekly':
+				$bundle = getWeeklyBundle();
+				break;
+			
+			default:
+				APIOutput::http_response(401, "Invalid bundle ID: \"{$_GET['id']}\".");
+			
+		}
+			
+		$response = array(
+			'success' => true,
+			'user' => $steamid,
+			'bundle' => $bundle
+		);
+		
 	}
-
-	foreach($bundle->getGames() as $game) {
+	
+	APIOutput::output($response);
+	
+	// -------------
+	
+	function fillGame($game) {
+	
+		global $steamkey, $steamid;
 	
 		$score = GiantBomb::getScore($game->getTitle());
 		$appid = Steam::getAppId($game->getTitle());
 		
-		if(isset($appid))
-			$picture = Steam::getPicture($game->getAppid());
+		if(!empty($appid)) {
+			$picture = Steam::getPicture($appid);
+			$url = Steam::getURL($appid);
+		}
 		
 		if(isset($score))	$game->setScore($score);
 		if(isset($appid))	$game->setAppid($appid);
 		if(isset($picture))	$game->setPicture($picture);
+		if(isset($url))		$game->setUrl($url);
 	
-		if($steamEnabled && isset($appid)) {
-			$owned = Steam::ownedBy($game->getAppid(), $_GET['steamid'], $_GET['steamkey']);
-			
+		if(!empty($steamid) && !empty($steamkey) && !empty($appid)) {
+			$owned = Steam::ownedBy($appid, $steamid, $steamkey);
 			if(isset($owned))	$game->setOwned($owned);
 		}
+		
 	}
-
-	$response = array(
-		'success' => true,
-		'user' => $_GET['steamid'],
-		'bundle' => $bundle
-	);
-
-	APIOutput::output($response);
+	
+	function getRegularBundle() {
+	
+		$bundle = HumbleBundle::getHumbleBundle();
+		
+		foreach($bundle->getGames() as $game)
+			fillGame($game);
+			
+		return $bundle;
+	
+	}
+	
+	function getWeeklyBundle() {
+	
+		$bundle = HumbleBundle::getWeeklyBundle();
+		
+		foreach($bundle->getGames() as $game)
+			fillGame($game);
+			
+		return $bundle;
+		
+	}
+	
+	function getAllBundles() {
+	
+		return array(
+			getRegularBundle(),
+			getWeeklyBundle()
+		);
+	
+	}
 
 ?>
