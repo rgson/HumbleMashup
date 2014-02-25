@@ -21,7 +21,7 @@ class SteamLogin {
 				$_SESSION['steamid'] = $steamid;
 				setcookie('steamid', $steamid);
 				
-				header('Location: ' . HOME);
+				header('Location: ' . $_SERVER['PHP_SELF']);
 			}
 		}
 	
@@ -32,7 +32,7 @@ class SteamLogin {
 		setcookie('steamid', '', time()-100);
 		unset($_SESSION['steamid']);
 		
-		header('Location: ' . HOME);
+		header('Location: ' . $_SERVER['PHP_SELF']);
 	
 	}
 
@@ -53,6 +53,5 @@ class SteamLogin {
 	
 	}
 
-}
 
 ?>
