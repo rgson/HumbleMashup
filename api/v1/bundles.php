@@ -8,14 +8,15 @@
 	
 	if(!empty($steamid) && empty($steamkey))
 		APIOutput::http_response(401, 'Provided SteamID but no Steam API key.');
+		
+	$response = array(
+		'success' => true,
+		'user' => $steamid
+	);
 	
 	if(empty($bundleid)) {
 	
-		$response = array(
-			'success' => true,
-			'user' => $steamid,
-			'bundles' => getAllBundles()
-		);
+		$response['bundles'] = getAllBundles();
 		
 	} else {
 	
@@ -34,11 +35,7 @@
 			
 		}
 			
-		$response = array(
-			'success' => true,
-			'user' => $steamid,
-			'bundle' => $bundle
-		);
+		$response['bundle'] = $bundle;
 		
 	}
 	
@@ -50,7 +47,7 @@
 	
 		global $steamkey, $steamid;
 	
-		$score = GiantBomb::getScore($game->getTitle());
+		$score = Metacritic::getScore($game->getTitle());
 		$appid = Steam::getAppId($game->getTitle());
 		
 		if(!empty($appid)) {

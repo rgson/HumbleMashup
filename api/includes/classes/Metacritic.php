@@ -2,6 +2,14 @@
 
 class Metacritic {
 
+	// Stub
+	// TODO: Use Giant Bomb API to get score.
+	public static function getScore($title) {
+	
+		return null;
+	
+	}
+
 	public static function getAppID($title) {
 
 	}
@@ -12,8 +20,6 @@ class Metacritic {
 	
 	}
 }
-
-?>
 
 /*"result": {
     "name": "The Elder Scrolls V: Skyrim",
@@ -28,3 +34,5 @@ class Metacritic {
   }
 }
 */
+
+?>
