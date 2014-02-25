@@ -39,13 +39,12 @@
 			{
 				$steam64 = str_replace("http://steamcommunity.com/openid/id/", "", $_SESSION['SteamAuth']);
 	
-				setcookie($steam64);
+				setcookie('steamid', $steam64);
 
-				if(isset($_COOKIE[$steam64]))
+				if(isset($_COOKIE['steamid']))
 				{
-					$_SESSION['SteamAuth'] = $OpenID->validate();
-					$myCookie = "test";
-					setcookie($myCookie);
+					$_SESSION['SteamID64'] = ($_COOKIE['steamid']); 					
+
 					print_r($_COOKIE);
 				}
 				//$profile = file_get_contents("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key={$myKey}&steamids={$steam64}");
@@ -57,11 +56,6 @@
 			//header("Location: index.php");
 		}
 	}
-
-//om man gör setcookie när inloggningen gått igenom (nånstans strax efter att SESSION-variabeln sätts)
-
-//och sen i index kollar man ifall isset($_COOKIE['steamid']) och isf sätter man session-variabeln utan att användaren behöver logga in
-
 
 	if(isset($_SESSION['SteamAuth']))
 	{
