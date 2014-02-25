@@ -15,9 +15,9 @@
 			header("Location: {$OpenID->authUrl()}");
 		}
 
-		if(!isset($_SESSION['T2SteamAuth']))
+		if(!isset($_SESSION['SteamAuth']))
 		{
-			$login = "<div id=\"login\">Welcome. <a href=\"?login\">
+			$login = "<div id=\"login\"><a href=\"?login\">
 			<img src=\"http://cdn.steamcommunity.com/public/images/signinthroughsteam/sits_large_border.png\"/></a></div>"; //måste ha med steambild även om inte här
 		}
 
@@ -30,15 +30,25 @@
 
 	else
 	{
-		if(!isset($_SESSION['T2SteamAuth']))
+		if(!isset($_SESSION['SteamAuth']))
 		{
-			$_SESSION['T2SteamAuth'] = $OpenID->validate() ? $OpenID->identity : null;
-			//$_SESSION['T2SteamID64'] = str_replace("http://steamcommunity.com/openid/id/", "", $_SESSION['T2SteamAuth']);
+			$_SESSION['SteamAuth'] = $OpenID->validate() ? $OpenID->identity : null;
+			$_SESSION['SteamID64'] = str_replace("http://steamcommunity.com/openid/id/", "", $_SESSION['SteamAuth']);
 
-			if($_SESSION['T2SteamAuth']!== null)
+			if($_SESSION['SteamAuth'] !== null)
 			{
-				$steam64 = str_replace("http://steamcommunity.com/openid/id/", "", $_SESSION['T2SteamAuth']);
-				$profile = file_get_contents("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key={$myKey}&steamids={$steam64}");
+				$steam64 = str_replace("http://steamcommunity.com/openid/id/", "", $_SESSION['SteamAuth']);
+	
+				setcookie($steam64);
+
+				if(isset($_COOKIE[$steam64]))
+				{
+					$_SESSION['SteamAuth'] = $OpenID->validate();
+					$myCookie = "test";
+					setcookie($myCookie);
+					print_r($_COOKIE);
+				}
+				//$profile = file_get_contents("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key={$myKey}&steamids={$steam64}");
 				//$buffer = fopen("../cache/{$steam64}.json", "w+");
 				//fwrite($buffer, $profile);
 				//fclose($buffer);	
@@ -48,19 +58,24 @@
 		}
 	}
 
-	if(isset($_SESSION['T2SteamAuth']))
+//om man gör setcookie när inloggningen gått igenom (nånstans strax efter att SESSION-variabeln sätts)
+
+//och sen i index kollar man ifall isset($_COOKIE['steamid']) och isf sätter man session-variabeln utan att användaren behöver logga in
+
+
+	if(isset($_SESSION['SteamAuth']))
 	{
 		$login = "<div id=\"login\"><a href=\"?logout\">Logout</a></div>";		
 	}
 
 	if(isset($_GET['logout']))
 	{
-		unset($_SESSION['T2SteamAuth']);
-		unset($_SESSION['T2SteamID64']);
+		unset($_SESSION['SteamAuth']);
+		unset($_SESSION['SteamID64']);
 		//header("Location: index.php");
 	}
 
-	//$steam = json_decode(file_get_contents("../cache/{$_SESSION['T2SteamID64']}.json")); //eller get_content
+	//$steam = json_decode(file_get_contents("../cache/{$_SESSION['SteamID64']}.json")); //eller get_content
 
 	echo $login;
 
