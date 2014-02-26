@@ -4,8 +4,8 @@ class Steam {
 
 	public static function getAppId($title) {
 	
-		$cached = self::checkCachedAppIds($title);
-		if($cached)
+		$cached = self::checkCachedAppids($title);
+		if($cached !== false)
 			return $cached;
 	
 		$term = rawurlencode($title);
@@ -15,22 +15,22 @@ class Steam {
 		
 		$result = $dom->query("//a[@class='search_result_row even']/@href");
 		
-		if ($result->length === 0)	// no matches found
-			return null;
+		if ($result->length === 0) {	// no matches found
+			$appid = null;
+		} else {
+			$appurl = $result->item(0)->nodeValue;
+			$pattern = '%http://store\.steampowered\.com/app/(\d+)/%';
+			$matches = array();
+			preg_match($pattern, $appurl, $matches);
+			$appid = $matches[1];
+		}
 		
-		$appurl = $result->item(0)->nodeValue;
-		
-		$pattern = '%http://store\.steampowered\.com/app/(\d+)/%';
-		$matches = array();
-		preg_match($pattern, $appurl, $matches);
-		$appid = $matches[1];
-		
-		self::saveToCache($title, $appid);
+		self::saveAppidToCache($title, $appid);
 		return $appid;
 		
 	}
 	
-	private static function checkCachedAppIds($title) {
+	private static function checkCachedAppids($title) {
 	
 		$cache = json_decode(file_get_contents(CACHE . '/appid.json'), true);		
 		if(array_key_exists($title, $cache))
@@ -39,7 +39,7 @@ class Steam {
 	
 	}
 	
-	private static function saveToCache($title, $appid) {
+	private static function saveAppidToCache($title, $appid) {
 	
 		$cache = json_decode(file_get_contents(CACHE . '/appid.json'), true);
 		$cache[$title] = $appid;
