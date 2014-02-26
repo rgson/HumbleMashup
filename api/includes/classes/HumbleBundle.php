@@ -51,10 +51,10 @@ class HumbleBundle {
 		
 		$games = array();
 		
-		$basic_titles = $dom->query("//div[contains(@class,'section')]/ul[contains(@class,'games')]/li[contains(@class,'game')]/a/span[@class='item-title']");
+		$basic_titles = $dom->query("//div[not(contains(h3/@class,'bta-info-heading'))]/ul[contains(@class,'games')]/li[contains(@class,'game')]/a/span[@class='item-title']");
 		
 		$bta_price = $dom->query("//em[@class='price bta']")->item(0)->nodeValue;
-		$bta_titles = $dom->query("//div[contains(h3/@class,'bta-info-heading')]/ul[contains(@class,'games')]/li[contains(@class,'game')]/a/span[@class='item-title']");		
+		$bta_titles = $dom->query("//div[contains(h3/@class,'bta-info-heading')]/ul[contains(@class,'games')]/li[contains(@class,'game')]/a/span[@class='item-title']");
 		
 		for($i = 0; $i < $basic_titles->length; $i++) {
 			$games[] = new Game(
@@ -62,8 +62,8 @@ class HumbleBundle {
 			);
 		}
 		
-		for($i = 0; $i < $bta_titles->length; $i++) {
-			$game = new Game(
+		for($i = 0; $i < $bta_titles->length; $i++) {			
+			$games[] = new Game(
 				trim($bta_titles->item($i)->nodeValue),
 				floatval(substr($bta_price, 1))
 			);
