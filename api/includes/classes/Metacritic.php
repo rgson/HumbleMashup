@@ -2,15 +2,22 @@
 
 class Metacritic {
 
-	public static function getAppID($title) {
-
+	public static function getAppID()
+	{
+		$url = "http://www.metacritic.com";
+		
 	}
 
-	public static function getURL($appid) {
+	public static function getURL($url, $platform, $name) {
 	
-		return "http://www.metacritic.com/$platform/$name";
-	
+		return "$url/$platform/$name";
 	}
+
+	public static function SearchGame($appID) {
+		
+		if (is_null($getURL($url, $platform, $name)))
+	}
+		
 }
 
 ?>
