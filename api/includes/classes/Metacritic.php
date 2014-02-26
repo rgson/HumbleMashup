@@ -2,26 +2,28 @@
 
 class Metacritic {
 
-	// Stub
-	// TODO: Use Giant Bomb API to get score.
 	public static function getScore($title) {
-	
-		return null;
-	
-	}
 
-	public static function getAppID($title) {
+		Unirest::verifyPeer(false);
 
-	}
+		$response = Unirest::post(
+		  "https://byroredux-metacritic.p.mashape.com/find/game",
+		  array(
+			"X-Mashape-Authorization" => METACRITICKEY
+		  ),
+		  array(
+			"title" => $title,
+			"platform" => 3
+		  )
+		);
 
-	public static function getURL($appid) {
-	
-		return "http://www.metacritic.com/$platform/$name";
+		return (int)$response->body->result->score;
 	
 	}
 }
 
-/*"result": {
+/*
+"result": {
     "name": "The Elder Scrolls V: Skyrim",
     "score": "92",
     "rlsdate": "2011-11-11",
