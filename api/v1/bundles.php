@@ -3,11 +3,7 @@
 	require 'config.php';
 	
 	$steamid = (isset($_GET['steamid']) ? $_GET['steamid'] : null);
-	$steamkey = (isset($_GET['steamkey']) ? $_GET['steamkey'] : null);
 	$bundleid = (isset($_GET['bundle']) ? $_GET['bundle'] : null);
-	
-	if(!empty($steamid) && empty($steamkey))
-		APIOutput::http_response(401, 'Provided SteamID but no Steam API key.');
 		
 	$response = array();
 	
@@ -30,7 +26,7 @@
 				break;
 			
 			default:
-				APIOutput::http_response(401, "Invalid bundle ID: \"{$_GET['id']}\".");
+				APIOutput::http_response(401, "Invalid bundle: \"{$_GET['id']}\".");
 			
 		}
 			
@@ -44,7 +40,7 @@
 	
 	function fillGame($game) {
 	
-		global $steamkey, $steamid;
+		global $steamid;
 	
 		$score = Metacritic::getScore($game->getTitle());
 		$appid = Steam::getAppId($game->getTitle());
@@ -59,8 +55,8 @@
 		if(isset($picture))	$game->setPicture($picture);
 		if(isset($url))		$game->setUrl($url);
 	
-		if(!empty($steamid) && !empty($steamkey) && !empty($appid)) {
-			$owned = Steam::ownedBy($appid, $steamid, $steamkey);
+		if(!empty($steamid) && !empty($appid)) {
+			$owned = Steam::ownedBy($appid, $steamid);
 			if(isset($owned))	$game->setOwned($owned);
 		}
 		

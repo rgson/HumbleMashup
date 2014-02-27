@@ -61,7 +61,8 @@ class Steam {
 	
 	// Stub
 	// TODO: Use Steam API to check user library for game with appid === $appid
-	public static function ownedBy($appid, $steamid, $apikey) {
+	// Steam key is defined as STEAMKEY
+	public static function ownedBy($appid, $steamid) {
 	
 		return null;
 	
