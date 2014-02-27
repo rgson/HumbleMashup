@@ -9,13 +9,12 @@
 	if(!empty($steamid) && empty($steamkey))
 		APIOutput::http_response(401, 'Provided SteamID but no Steam API key.');
 		
-	$response = array(
-		'success' => true,
-		'user' => $steamid
-	);
+	$response = array();
+	
+	if(!empty($steamid))
+		$response['user'] = $steamid;
 	
 	if(empty($bundleid)) {
-	
 		$response['bundles'] = getAllBundles();
 		
 	} else {

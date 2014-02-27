@@ -61,12 +61,14 @@ class Bundle implements JsonSerializable {
 	*/
 	public function jsonSerialize() {
 	
-		return array(
+		$array = array(
 			'title' => $this->title,
 			'picture' => $this->picture,
 			'url' => $this->url,
 			'games' => $this->games
 		);
+		
+		return array_filter($array, function($item) { return $item !== null; });
 	
 	}
 	

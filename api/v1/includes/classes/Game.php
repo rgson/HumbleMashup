@@ -10,14 +10,14 @@ class Game implements JsonSerializable {
 	private $url;
 	private $owned;
 
-	public function __construct($title, $price = 1.0, $score = null, $appid = null, $picture = null, $url = null, $owned = false) {
+	public function __construct($title, $price = 1.0, $score = null, $appid = null, $picture = null, $url = null, $owned = null) {
 		$this->title = (string) $title;
 		$this->price = (float) $price;
 		$this->score = $score;
 		$this->appid = $appid;
 		$this->picture = $picture;
 		$this->url = $url;
-		$this->owned = (bool) $owned;
+		$this->owned = $owned;
 	}
 
 	// Title get, set attribut
@@ -80,7 +80,7 @@ class Game implements JsonSerializable {
 	}
 
 	public function setOwned($newOwned) {
-		$this->owned = (bool) (isset($newOwned) ? $newOwned : false);
+		$this->owned = (isset($newOwned) ? (bool)$newOwned : null);
 	}
 	
 	/*
@@ -90,7 +90,7 @@ class Game implements JsonSerializable {
 	*/
 	public function jsonSerialize() {
 	
-		return array(
+		$array = array(
 			'title' => $this->title,
 			'price' => $this->price,
 			'score' => $this->score,
@@ -100,6 +100,8 @@ class Game implements JsonSerializable {
 			'owned' => $this->owned
 		);
 		
+		return array_filter($array, function($item) { return $item !== null; });
+			
 	}
 
 }
