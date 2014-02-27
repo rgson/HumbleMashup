@@ -9,17 +9,17 @@
 	</head>
 	<body>
 		<!-- Header -->
-		<?php include PAGES . '/part/header.php'; ?>
+		<?php require PAGES . '/part/header.php'; ?>
 		
 		<!-- Content -->
 		<?php
 		if (!isset($_GET['page']))
-			include PAGES . '/home.php';
+			require PAGES . '/home.php';
 		else
-			include PAGES . "/{$_GET['page']}.php";
+			require PAGES . "/{$_GET['page']}.php";
 		?>	
 		
 		<!-- Footer -->
-		<?php include PAGES . '/part/footer.php'; ?>
+		<?php require PAGES . '/part/footer.php'; ?>
 	</body>
 </html>

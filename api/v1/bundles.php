@@ -26,7 +26,7 @@
 				break;
 			
 			default:
-				APIOutput::http_response(401, "Invalid bundle: \"{$_GET['id']}\".");
+				APIOutput::http_response(401, "Invalid bundle: $bundleid");
 			
 		}
 			

@@ -3,3 +3,6 @@ Options -Indexes
 <Files "config.php">
 	Deny from all
 </Files>
+
+RewriteEngine On
+RewriteRule		^([^/]+)/?$			index.php?page=$1		[QSA,NC,L]
