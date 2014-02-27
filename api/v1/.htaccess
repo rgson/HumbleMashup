@@ -1,5 +1,6 @@
-Order Allow,Deny
-Allow from all
+<Files "config.php">
+	Deny from all
+</Files>
 
 RewriteEngine On
 RewriteRule		^bundles/([^\?^/]+)/?$			bundles.php?bundle=$1		[QSA,NC,L]

@@ -1,6 +1,6 @@
 <?php
 
-	require '../config.php';
+	require 'config.php';
 	
 	$steamid = (isset($_GET['steamid']) ? $_GET['steamid'] : null);
 	$steamkey = (isset($_GET['steamkey']) ? $_GET['steamkey'] : null);
