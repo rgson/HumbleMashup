@@ -2,14 +2,6 @@
 
 class Metacritic {
 
-	public static function getAppID()
-	{
-		$url = "http://www.metacritic.com";
-		
-	}
-
-	public static function getURL($url, $platform, $name) {
-
 	public static function getScore($title) {
 	
 		$cached = self::checkCachedScore($title);
@@ -52,14 +44,8 @@ class Metacritic {
 		$cache = json_decode(file_get_contents(CACHE . '/score.json'), true);
 		$cache[$title] = $score;
 		file_put_contents(CACHE . '/score.json', json_encode($cache));
-	
-		return "$url/$platform/$name";
 	}
-
-	public static function SearchGame($appID) {
-		
-		if (is_null($getURL($url, $platform, $name)))
-	}		
+	
 }
 
 /*
