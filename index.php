@@ -11,9 +11,6 @@
 		<!-- Header -->
 		<?php include PAGES . '/part/header.php'; ?>
 		
-		<!-- Navigation -->
-		<?php include PAGES . '/part/nav.php'; ?>
-		
 		<!-- Content -->
 		<?php
 		if (!isset($_GET['page']))
