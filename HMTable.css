@@ -1,0 +1,36 @@
+table td, th
+{
+	border-bottom: 10em;
+}
+
+td
+{
+	padding: 15em;
+}
+
+<table>
+<tr>
+<th>Rubrik1</th>
+<th>Rubrik2</th>
+<th>Rubrik3</th>
+</tr>
+
+<tr>
+<td>API</td>
+<td>Steam</td>
+<td>Something</td>
+</tr>
+
+<tr>
+<td>About</td>
+<td>Metacritic</td>
+<td>Random</td>
+</tr>
+
+<tr>
+<td>Contact</td>
+<td>HumbleBundle</td>
+<td>Utfyllnad</td>
+</tr>
+</table>
+
