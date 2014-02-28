@@ -5,4 +5,5 @@ Options -Indexes
 </Files>
 
 RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule		^([^/]+)/?$			index.php?page=$1		[QSA,NC,L]

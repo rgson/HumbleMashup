@@ -14,9 +14,8 @@ else if(isset($_GET['logout']))
 ?>
 
 <main>
-	<p>home</p>
-	
-	<div id="login" style="border: 1px solid black;">
+
+	<div id="login">
 	
 		<?php if(isset($_SESSION['steamid'])) { ?>
 		

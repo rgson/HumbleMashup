@@ -15,25 +15,25 @@
 					<h4>bundles</h4>
 					<div class="info">
 						<span class="verb">GET</span>
-						<span class="uri"><a href="v1/bundles">/v1/bundles</a></span>
+						<span class="uri"><a href="api/v1/bundles">api/v1/bundles</a></span>
 					</div>
 					<div class="desc">
-						Returns an array of all available <a href="#v1-data-bundle" class="code">Bundle</a>s,
+						Returns an array of all available <a href="#v1-data-bundle">Bundle</a>s,
 					</div>
 					<div class="params">
 						<div class="param">
 							<span class="code">steamid</span>
-							<span class="desc">(Optional) The Steam user ID used for checking for already owned games.</span>
+							<span class="desc">(Optional) The Steam user ID used when checking for owned games.</span>
 						</div>
 					</div>
 					<div class="response">
 						<div class="key">
 							<span class="code">success</span>
-							<span class="desc">A boolean representation of the request's completion status. (See <a href="#v1-data-error" class="code">Error</a>)</span>
+							<span class="desc">A boolean representation of the request's completion status. (See <a href="#v1-data-error">Error</a>)</span>
 						</div>
 						<div class="key">
 							<span class="code">bundles</span>
-							<span class="desc">An array of all available <a href="#v1-data-bundle" class="code">Bundle</a>s.</span>
+							<span class="desc">An array of all available <a href="#v1-data-bundle">Bundle</a>s.</span>
 						</div>
 					</div>
 				</section>
@@ -42,25 +42,25 @@
 					<h4>bundles/regular</h4>
 					<div class="info">
 						<span class="verb">GET</span>
-						<span class="uri"><a href="v1/bundles/regular">/v1/bundles/regular</a></span>
+						<span class="uri"><a href="api/v1/bundles/regular">api/v1/bundles/regular</a></span>
 					</div>
 					<div class="desc">
-						Returns the regular Humble Bundle found at <a href="http://www.humblebundle.com/">humblebundle.com</a> as a <a href="#v1-data-bundle" class="code">Bundle</a> object,
+						Returns the regular Humble Bundle found at <a href="http://www.humblebundle.com/">humblebundle.com</a> as a <a href="#v1-data-bundle">Bundle</a> object,
 					</div>
 					<div class="params">
 						<div class="param">
 							<span class="code">steamid</span>
-							<span class="desc">(Optional) The Steam user ID used for checking for already owned games.</span>
+							<span class="desc">(Optional) The Steam user ID used when checking for owned games.</span>
 						</div>
 					</div>
 					<div class="response">
 						<div class="key">
 							<span class="code">success</span>
-							<span class="desc">A boolean representation of the request's completion status. (See <a href="#v1-data-error" class="code">Error</a>)</span>
+							<span class="desc">A boolean representation of the request's completion status. (See <a href="#v1-data-error">Error</a>)</span>
 						</div>
 						<div class="key">
 							<span class="code">bundle</span>
-							<span class="desc">A <a href="#v1-data-bundle" class="code">Bundle</a> object representing the regular Humble Bundle.</span>
+							<span class="desc">A <a href="#v1-data-bundle">Bundle</a> object representing the regular Humble Bundle.</span>
 						</div>
 					</div>
 				</section>
@@ -69,25 +69,25 @@
 					<h4>bundles/weekly</h4>
 					<div class="info">
 						<span class="verb">GET</span>
-						<span class="uri"><a href="v1/bundles/weekly">/v1/bundles/weekly</a></span>
+						<span class="uri"><a href="api/v1/bundles/weekly">api/v1/bundles/weekly</a></span>
 					</div>
 					<div class="desc">
-						Returns the Humble Weekly Sale bundle found at <a href="http://www.humblebundle.com/weekly">humblebundle.com/weekly</a> as a <a href="#v1-data-bundle" class="code">Bundle</a> object,
+						Returns the Humble Weekly Sale bundle found at <a href="http://www.humblebundle.com/weekly">humblebundle.com/weekly</a> as a <a href="#v1-data-bundle">Bundle</a> object,
 					</div>
 					<div class="params">
 						<div class="param">
 							<span class="code">steamid</span>
-							<span class="desc">(Optional) The Steam user ID used for checking for already owned games.</span>
+							<span class="desc">(Optional) The Steam user ID used when checking for owned games.</span>
 						</div>
 					</div>
 					<div class="response">
 						<div class="key">
 							<span class="code">success</span>
-							<span class="desc">A boolean representation of the request's completion status. (See <a href="#v1-data-error" class="code">Error</a>)</span>
+							<span class="desc">A boolean representation of the request's completion status. (See <a href="#v1-data-error">Error</a>)</span>
 						</div>
 						<div class="key">
 							<span class="code">bundle</span>
-							<span class="desc">A <a href="#v1-data-bundle" class="code">Bundle</a> object representing the Humble Weekly Sale bundle.</span>
+							<span class="desc">A <a href="#v1-data-bundle">Bundle</a> object representing the Humble Weekly Sale bundle.</span>
 						</div>
 					</div>
 				</section>
@@ -117,7 +117,7 @@
 						</div>
 						<div class="key">
 							<span class="code">games</span>
-							<span class="desc">An array of <a href="#v1-data-game" class="code">Game</a> objects representing the bundle's content.</span>
+							<span class="desc">An array of <a href="#v1-data-game">Game</a> objects representing the bundle's content.</span>
 						</div>
 					</div>
 				</section>
