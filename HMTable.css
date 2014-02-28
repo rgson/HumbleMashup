@@ -1,5 +1,7 @@
 table {
-	margin:0 auto;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
 	border-collapse: collapse;
 	background-color: #996633;
 }
