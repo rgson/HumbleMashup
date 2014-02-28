@@ -1,36 +1,14 @@
-table td, th
-{
-	border-bottom: 10em;
+table {
+	margin:0 auto;
+	border-collapse: collapse;
+	background-color: #996633;
 }
 
-td
-{
-	padding: 15em;
+td, th {
+	border: 1em solid #996633;
+	padding: 1rem;
+	text-align: left;
 }
 
-<table>
-<tr>
-<th>Rubrik1</th>
-<th>Rubrik2</th>
-<th>Rubrik3</th>
-</tr>
 
-<tr>
-<td>API</td>
-<td>Steam</td>
-<td>Something</td>
-</tr>
-
-<tr>
-<td>About</td>
-<td>Metacritic</td>
-<td>Random</td>
-</tr>
-
-<tr>
-<td>Contact</td>
-<td>HumbleBundle</td>
-<td>Utfyllnad</td>
-</tr>
-</table>
 
