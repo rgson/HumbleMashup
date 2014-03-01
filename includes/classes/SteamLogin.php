@@ -53,6 +53,23 @@ class SteamLogin {
 	
 	}
 
+	public static function getAvatar() {
+	
+		if(empty($_SESSION['steamid']))
+			return null;
+	
+		$profile = json_decode(file_get_contents('http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=' . STEAMKEY . '&steamids=' . $_SESSION['steamid']), true);
+		
+		try {
+			$name = $profile['response']['players'][0]['avatarmedium'];
+		} catch (Exception $e) {
+			$name = null;
+		}
+		
+		return $name;
+	
+	}
+
 }
 
 ?>

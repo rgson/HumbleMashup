@@ -2,44 +2,45 @@ footer {
 	position: absolute;
 	bottom: 0;
 	height: 100px;
-	width: 920px;
+	width: 100%;
 	background-color: #f5f5f5;
-	padding: 0 40px;
 }
 
 footer .column {
 	float: left;
-	width: 50%;
-	margin: auto;
+	margin: 0 100px 0 40px;
 }
 
 footer .column a {
 	display: block;
-	line-height: 32px;
+	margin: 8px;
 }
 
-footer a.icon {
-	padding-left: 36px;
+footer a {
+	text-decoration: none;
+	color: black;
+}
+
+footer a:hover {
+	color: #559;
 }
 
 footer .icon {
-	line-height: 32px;
-	min-height: 32px;
-	min-width: 32px;
-	background-size: 32px 32px;
+	line-height: 24px;
+	background-size: contain;
 	background-repeat: no-repeat;
 }
 
-footer .icon.api {
-	background-image: url('../icons/api.png');
+footer .icon.home {
+	background-image: url('../icons/home.png');
 }
 
 footer .icon.about {
 	background-image: url('../icons/about.png');
 }
 
-footer .icon.contact {
-	background-image: url('../icons/contact.png');
+footer .icon.api {
+	background-image: url('../icons/api.png');
 }
 
 footer .icon.humblebundle {
@@ -54,12 +55,7 @@ footer .icon.steam {
 	background-image: url('../icons/steam.png');
 }
 
-footer a {
-	text-decoration: none;
-	font-weight: 600;
-	color: black;
+footer a.icon {
+	padding-left: 32px;
 }
-
-footer a:hover {
-	color: #559;
-}
+	

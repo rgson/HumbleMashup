@@ -14,7 +14,7 @@
 			</div>
 
 			<div>
-				<?php include 'includes/pages/part/footer.php'; ?>
+				<?php include '../includes/pages/part/footer.php'; ?>
 			</div>
 
 		</body>

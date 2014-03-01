@@ -1,4 +1,24 @@
-.code {
+.code, .verb, .name {
 	font-family: monospace;
-	margin: 0 5px;
+}
+
+.note {
+	font-style: italic;
+	font-size: .75em;
+}
+
+.params, .response, .keys {
+	display: table;
+}
+
+.key {
+	display: table-row;
+}
+
+.key > * {
+	display: table-cell;
+}
+
+.key > *:first-child {
+	width: 75px;
 }

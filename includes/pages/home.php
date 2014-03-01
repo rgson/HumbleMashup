@@ -26,7 +26,7 @@ else if(isset($_GET['logout']))
 		
 		<p>Not logged in.</p>
 		<a href="?login">
-			<img src="http://cdn.steamcommunity.com/public/images/signinthroughsteam/sits_large_border.png"/>
+			<img src="http://cdn.steamcommunity.com/public/images/signinthroughsteam/sits_large_noborder.png"/>
 		</a>
 		
 		<?php } ?>

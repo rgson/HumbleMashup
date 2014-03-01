@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Raleway:400,600);
+@import url(http://fonts.googleapis.com/css?family=Raleway:200,300);
 @import url(header.css);
 @import url(footer.css);
 
@@ -8,7 +8,8 @@ html {
 
 body {
 	background-color: #eee;
-	font-family: Raleway, sans-serif;
+	font-family: 'Raleway', Helvetica, Arial, sans-serif;
+	/** font-family: Georgia, serif; */
 	height: 100%;
 	margin: 0;
 }
@@ -16,7 +17,7 @@ body {
 body > #wrapper {
 	position: relative;
 	margin: 0 auto;
-	width: 1000px;
+	width: 750px;
 	background-color: #2b2f34;
 	box-shadow: 0 0 10px #2b2f34;
 	height: auto !important;
