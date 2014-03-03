@@ -3,7 +3,7 @@
 	<article id="apidoc">
 		<h1>API documentation</h1>
 		<p>This page describes the available API resources of the HumbleMashup API. The API gives developers access to all of the data used to build the HumbleMashup website.</p>
-		<p>Please note that the HumbleMashup API does not provide any original data; we simply gather our data from <a href="http://www.humblebundle.com/">Humble Bundle</a>, <a href="http://www.steampowered.com/">Steam</a> and <a href="http://www.metacritic.com/">Metacritic</a> and present it in a new format.</p>
+		<p>Please note that the HumbleMashup API does not provide any original data; we simply gather our data from <a href="http://www.humblebundle.com/" target="_blank">Humble Bundle</a>, <a href="http://www.steampowered.com/" target="_blank">Steam</a> and <a href="http://www.metacritic.com/" target="_blank">Metacritic</a> and present it in a new format.</p>
 	
 		<section id="v1" class="version">
 			<h2>Version 1</h2>
@@ -47,7 +47,7 @@
 						<span class="uri"><a href="api/v1/bundles/regular">api/v1/bundles/regular</a></span>
 					</p>
 					<p class="desc">
-						Returns the regular Humble Bundle found at <a href="http://www.humblebundle.com/">humblebundle.com</a> as a <a href="#v1-data-bundle">Bundle</a> object,
+						Returns the regular Humble Bundle found at <a href="http://www.humblebundle.com/" target="_blank">humblebundle.com</a> as a <a href="#v1-data-bundle">Bundle</a> object,
 					</p>
 					<h5>Parameters</h5>
 					<div class="params">
@@ -76,7 +76,7 @@
 						<span class="uri"><a href="api/v1/bundles/weekly">api/v1/bundles/weekly</a></span>
 					</p>
 					<p class="desc">
-						Returns the Humble Weekly Sale bundle found at <a href="http://www.humblebundle.com/weekly">humblebundle.com/weekly</a> as a <a href="#v1-data-bundle">Bundle</a> object,
+						Returns the Humble Weekly Sale bundle found at <a href="http://www.humblebundle.com/weekly" target="_blank">humblebundle.com/weekly</a> as a <a href="#v1-data-bundle">Bundle</a> object,
 					</p>
 					<h5>Parameters</h5>
 					<div class="params">
@@ -106,7 +106,7 @@
 				<section id="v1-data-bundle" class="data">
 					<h4>Bundle</h4>
 					<p class="desc">
-						A data type representing a bundle found at <a href="http://www.humblebundle.com/">http://www.humblebundle.com/</a>.
+						A data type representing a bundle found at <a href="http://www.humblebundle.com/" target="_blank">humblebundle.com</a>.
 					</p>
 					<div class="keys">
 						<div class="key">
@@ -131,7 +131,7 @@
 				<section id="v1-data-game" class="data">
 					<h4>Game</h4>
 					<p class="desc">
-						A data type representing a game found in a <a href="http://www.humblebundle.com/">Humble Bundle</a>, complemented with data from <a hreaf="http://www.steampowered.com/">Steam</a> and <a href="http://www.metacritic.com/">Metacritic</a>.
+						A data type representing a game found in a <a href="http://www.humblebundle.com/" target="_blank">Humble Bundle</a>, complemented with data from <a hreaf="http://www.steampowered.com/" target="_blank">Steam</a> and <a href="http://www.metacritic.com/" target="_blank">Metacritic</a>.
 						<br><p>Note: <span class="note">(Optional)</span> response keys are omitted if the associated value is <span class="code">null</span>. This happens when the data does not exist (i.e. a Humble Bundle game that's not available on Steam, or a game that hasn't been given a Metacritic score) or when the data could not be retrieved (i.e. a game listed under a different name on Steam/Metacritic, or no Steam user ID being provided for the ownership check).</p>
 					</p>
 					<div class="keys">

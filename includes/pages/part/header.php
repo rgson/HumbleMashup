@@ -1,5 +1,5 @@
 <header>
-	<a href="index.php">
+	<a href="home">
 		<div id="title">HumbleMashup</div>
 	</a>
 </header>

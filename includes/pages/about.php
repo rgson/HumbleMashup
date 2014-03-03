@@ -3,7 +3,7 @@
 	<article id="about">
 		<h1>About</h1>
 		<p>HumbleMashup is a mashup project for easily evaluating the currently available Humble Bundles.</p>
-		<p>HumbleMashup gathers data from <a href="http://www.humblebundle.com/">Humble Bundle</a>, <a href="http://www.steampowered.com/">Steam</a> and <a href="http://www.metacritic.com/">Metacritic</a> and presents it in a new format to help you in evaluating the relative value of a bundle from <em>your</em> personal perspective.</p>
+		<p>HumbleMashup gathers data from <a href="http://www.humblebundle.com/" target="_blank">Humble Bundle</a>, <a href="http://www.steampowered.com/" target="_blank">Steam</a> and <a href="http://www.metacritic.com/" target="_blank">Metacritic</a> and presents it in a new format to help you in evaluating the relative value of a bundle from <em>your</em> personal perspective.</p>
 
 		<section>
 			<h2>How it works</h2>
