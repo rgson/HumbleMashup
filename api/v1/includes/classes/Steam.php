@@ -64,22 +64,22 @@ class Steam {
 	
 	public static function ownedBy($appid, $steamid) {
 	
-		if(!isset(self::appids)){
+		if(!isset(self::$appids)){
 
-			$url = "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=STEAMKEY&steamid=$steamid";
+			$url = "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=".STEAMKEY."&steamid=$steamid";
 
-			$jason = json_decode(file_get_contents($url), true);
+			$json = json_decode(file_get_contents($url), true);
 
-			self:appids = array();
+			self::$appids = array();
 
-			foreach ($jason["response"]["games"] as $game) {
+			foreach ($json["response"]["games"] as $game) {
 
-				self::appids[$game["appid"]] = true;
+				self::$appids[$game["appid"]] = true;
 
 			}
 		}
 
-		return self::appids[$appid];
+		return self::$appids[$appid];
 	}
 
 }
