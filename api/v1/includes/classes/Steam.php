@@ -59,13 +59,24 @@ class Steam {
 	
 	}
 	
-	// Stub
-	// TODO: Use Steam API to check user library for game with appid === $appid
-	// Steam key is defined as STEAMKEY
+	
 	public static function ownedBy($appid, $steamid) {
 	
-		return null;
-	
+		$url = "http://api.steampowered.com/IPlayerService/GetOwnedGames/
+				v0001/?key=STEAMKEY&steamid=$steamid";
+
+		@jason = json_decode(file_get_contents($url), true);
+
+		foreach ($jason["response"]["games"] as $game) {
+			
+			if ($game["appid"] == $appid) {
+
+				return true;
+			}
+
+		}
+
+		return false;	
 	}
 
 }
