@@ -2,6 +2,8 @@
 
 class Steam {
 
+	private static $appids;
+
 	public static function getAppId($title) {
 	
 		$cached = self::checkCachedAppids($title);
@@ -62,21 +64,22 @@ class Steam {
 	
 	public static function ownedBy($appid, $steamid) {
 	
-		$url = "http://api.steampowered.com/IPlayerService/GetOwnedGames/
-				v0001/?key=STEAMKEY&steamid=$steamid";
+		if(!isset(self::appids)){
 
-		@jason = json_decode(file_get_contents($url), true);
+			$url = "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=STEAMKEY&steamid=$steamid";
 
-		foreach ($jason["response"]["games"] as $game) {
-			
-			if ($game["appid"] == $appid) {
+			$jason = json_decode(file_get_contents($url), true);
 
-				return true;
+			self:appids = array();
+
+			foreach ($jason["response"]["games"] as $game) {
+
+				self::appids[$game["appid"]] = true;
+
 			}
-
 		}
 
-		return false;	
+		return self::appids[$appid];
 	}
 
 }
