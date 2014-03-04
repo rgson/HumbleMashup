@@ -79,7 +79,7 @@ class Steam {
 			}
 		}
 
-		return self::$appids[$appid];
+		return array_key_exists($appid, self::$appids);
 	}
 
 }

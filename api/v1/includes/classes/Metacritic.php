@@ -22,6 +22,8 @@ class Metacritic {
 		
 		if(!isset($response->body->result->score))
 			$score = null;
+		if($response->body->result->score === "")
+			$score = null;
 		else
 			$score = (int)$response->body->result->score;
 		

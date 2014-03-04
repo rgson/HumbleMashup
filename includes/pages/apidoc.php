@@ -15,7 +15,7 @@
 					<h4>bundles</h4>
 					<p class="info">
 						<span class="verb">GET</span>
-						<span class="uri"><a href="api/v1/bundles">api/v1/bundles</a></span>
+						<span class="uri"><a href="api/v1/bundles" target="_blank">api/v1/bundles</a></span>
 					</p>
 					<p class="desc">
 						Returns an array of all available <a href="#v1-data-bundle">Bundle</a>s,
@@ -44,7 +44,7 @@
 					<h4>bundles/regular</h4>
 					<p class="info">
 						<span class="verb">GET</span>
-						<span class="uri"><a href="api/v1/bundles/regular">api/v1/bundles/regular</a></span>
+						<span class="uri"><a href="api/v1/bundles/regular" target="_blank">api/v1/bundles/regular</a></span>
 					</p>
 					<p class="desc">
 						Returns the regular Humble Bundle found at <a href="http://www.humblebundle.com/" target="_blank">humblebundle.com</a> as a <a href="#v1-data-bundle">Bundle</a> object,
@@ -73,7 +73,7 @@
 					<h4>bundles/weekly</h4>
 					<p class="info">
 						<span class="verb">GET</span>
-						<span class="uri"><a href="api/v1/bundles/weekly">api/v1/bundles/weekly</a></span>
+						<span class="uri"><a href="api/v1/bundles/weekly" target="_blank">api/v1/bundles/weekly</a></span>
 					</p>
 					<p class="desc">
 						Returns the Humble Weekly Sale bundle found at <a href="http://www.humblebundle.com/weekly" target="_blank">humblebundle.com/weekly</a> as a <a href="#v1-data-bundle">Bundle</a> object,

@@ -61,7 +61,7 @@ class SteamLogin {
 		$profile = json_decode(file_get_contents('http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=' . STEAMKEY . '&steamids=' . $_SESSION['steamid']), true);
 		
 		try {
-			$name = $profile['response']['players'][0]['avatarmedium'];
+			$name = $profile['response']['players'][0]['avatar'];
 		} catch (Exception $e) {
 			$name = null;
 		}

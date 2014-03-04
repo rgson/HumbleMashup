@@ -1,0 +1,154 @@
+main {
+	position: relative;
+}
+
+#login {
+	position: relative;
+	float: right;
+}
+
+#profile {
+	color: black;
+	width: 150px;
+	height: 50px;
+	padding: 5px;
+	background-color: #f5f5f5;
+}
+
+#profile a {
+	text-decoration: none;
+	color: black;
+}
+
+#profile a:hover {
+	color: #559;
+}
+
+.user .name {
+	height: 32px;
+	vertical-align: top;
+	line-height: 32px;
+}
+
+.avatar {
+	display: inline;
+}
+
+#logout {
+	position: absolute;
+	display: block;
+	bottom: 2px;
+	right: 2px;
+	font-size: .9em;
+	border-radius: 2px;
+	background-color: #7bb036;
+	padding: 2px;
+}
+
+.bundle {
+	margin-top: 40px;
+}
+
+.bundle .header {
+	margin-bottom: 10px;
+}
+
+.games {
+	margin: 25px 0;
+}
+
+.games:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.game {
+	float: left;
+	width: 220px;
+	height: 150px;
+	background-color: #f5f5f5;
+	margin: 5px 1px;
+}
+
+.title {
+	color: black;
+	width: 220px;
+	height: 100px;
+}
+
+.poster {
+	position: relative;
+	width: 100%;
+}
+
+.poster img {
+	width: 100%;
+	height: 100%;
+}
+
+.poster p {
+	float: left;
+	overflow: hidden;
+	margin: 5px;
+}
+
+.info {
+	width: 220px;
+	height: 50px;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 50px;
+}
+
+.info > * {
+	display: inline-block;
+	width: 50px;
+	float: left;
+	font-weight: bold;
+}
+
+.price {
+	background-color: #6d9eeb;
+}
+
+.score {
+	background-color: #b7b7b7;
+	color: black;
+}
+
+.score.low {
+	background-color: #ff0000;
+	color: white;
+}
+
+.score.mid {
+	background-color: #ffcc33;
+	color: black;
+}
+
+.score.high {
+	background-color: #66cc33;
+	color: white;
+}
+
+.owned {
+	float: right;
+	font-size: 4em;
+	color: darkgreen;
+	font-weight: normal;
+}
+
+.nosteam {
+	float: right;
+	margin-right: 3px;
+}
+
+.nosteam img {
+	float: right;
+	display: inline;
+	width: 50px;
+	height: 50px;
+}
