@@ -48,6 +48,6 @@ h5 {
 
 .resource, .data {
 	padding: 10px;
-	border-left: solid 1px white;
+	border-left: solid 1px #f5f5f5;
 	margin-bottom: 2em;
 }
