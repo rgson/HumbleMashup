@@ -131,7 +131,7 @@
 				<section id="v1-data-game" class="data">
 					<h4>Game</h4>
 					<p class="desc">
-						A data type representing a game found in a <a href="http://www.humblebundle.com/" target="_blank">Humble Bundle</a>, complemented with data from <a hreaf="http://www.steampowered.com/" target="_blank">Steam</a> and <a href="http://www.metacritic.com/" target="_blank">Metacritic</a>.
+						A data type representing a game found in a <a href="http://www.humblebundle.com/" target="_blank">Humble Bundle</a>, complemented with data from <a href="http://www.steampowered.com/" target="_blank">Steam</a> and <a href="http://www.metacritic.com/" target="_blank">Metacritic</a>.
 						<br><p>Note: <span class="note">(Optional)</span> response keys are omitted if the associated value is <span class="code">null</span>. This happens when the data does not exist (i.e. a Humble Bundle game that's not available on Steam, or a game that hasn't been given a Metacritic score) or when the data could not be retrieved (i.e. a game listed under a different name on Steam/Metacritic, or no Steam user ID being provided for the ownership check).</p>
 					</p>
 					<div class="keys">

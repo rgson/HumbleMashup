@@ -22,3 +22,32 @@
 .key > *:first-child {
 	width: 75px;
 }
+
+.info {
+	background-color: black;
+	padding: .75em;
+	border-radius: 10px;
+}
+
+.verb {
+	margin-right: 2em;
+}
+
+h2, h3, h4, h5 {
+	margin-bottom: 1em;
+	margin-top: 1em;
+}
+
+h4 {
+	margin-top: 0;
+}
+
+h5 {
+	margin-bottom: 0;
+}
+
+.resource, .data {
+	padding: 10px;
+	border-left: solid 1px white;
+	margin-bottom: 2em;
+}
