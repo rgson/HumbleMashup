@@ -51,21 +51,19 @@ class HumbleBundle {
 		
 		$games = array();
 		
-		$basic_titles = $dom->query("//div[not(contains(h3/@class,'bta-info-heading'))]/ul[contains(@class,'games')]/li[contains(@class,'game')]/a/span[@class='item-title']");
-		
-		$bta_price = $dom->query("//em[@class='price bta']")->item(0)->nodeValue;
-		$bta_titles = $dom->query("//div[contains(h3/@class,'bta-info-heading')]/ul[contains(@class,'games')]/li[contains(@class,'game')]/a/span[@class='item-title']");
-		
-		for($i = 0; $i < $basic_titles->length; $i++) {
+		$basicTitles = $dom->query("//div[not(contains(h3/@class,'bta-info-heading'))]/ul[contains(@class,'games')]/li[contains(@class,'game')]/a/span[@class='item-title']");
+		foreach($basicTitles as $title) {
 			$games[] = new Game(
-				trim($basic_titles->item($i)->nodeValue)
+				str_replace('*', '', trim(preg_replace('/\s+/', ' ', $title->textContent)))
 			);
 		}
 		
-		for($i = 0; $i < $bta_titles->length; $i++) {			
+		$btaPrice = $dom->query("//em[@class='price bta']");
+		$btaTitles = $dom->query("//div[contains(h3/@class,'bta-info-heading')]/ul[contains(@class,'games')]/li[contains(@class,'game')]/a/span[@class='item-title']");
+		foreach($btaTitles as $title) {
 			$games[] = new Game(
-				trim($bta_titles->item($i)->nodeValue),
-				floatval(substr($bta_price, 1))
+				str_replace('*', '', trim(preg_replace('/\s+/', ' ', $title->textContent))),
+				floatval(substr($btaPrice->item(0)->nodeValue, 1))
 			);
 		}
 		
@@ -120,34 +118,22 @@ class HumbleBundle {
 		
 		$games = array();
 		
-		$basic_titles = $dom->query("//ul[contains(@class,'game-boxes') and not(contains(@class,'bta'))]/li/a[not(contains(span/@class,'fixed-price-info'))]/img[@class='game-box']/@alt");
-		
-		$bta_price = $dom->query("//span[@class='price bta']")->item(0)->nodeValue;
-		$bta_titles = $dom->query("//ul[contains(@class,'game-boxes') and contains(@class,'bta')]/li/a/img[@class='game-box']/@alt");
-		
-		$fixed_price = $dom->query("//span[@class='price fixed']")->item(0)->nodeValue;
-		$fixed_titles = $dom->query("//ul[contains(@class,'game-boxes') and not(contains(@class,'bta'))]/li/a[contains(span/@class,'fixed-price-info')]/img[@class='game-box']/@alt");		
-		
-		for($i = 0; $i < $basic_titles->length; $i++) {
+		$basicTitles = $dom->query("//div[@class='tiers']/div[@class='constrain-width' and not(contains(h3/@class,'bta-info'))]/ul[contains(@class, 'game-boxes')]/li/a");
+		foreach($basicTitles as $title) {
 			$games[] = new Game(
-				trim($basic_titles->item($i)->nodeValue)
+				str_replace('*', '', trim(preg_replace('/\s+/', ' ', $title->textContent)))
 			);
 		}
 		
-		for($i = 0; $i < $bta_titles->length; $i++) {
+		$btaPrice = $dom->query("//span[@class='price bta']");
+		$btaTitles = $dom->query("//div[@class='tiers']/div[@class='constrain-width' and contains(h3/@class,'bta-info')]/ul[contains(@class, 'game-boxes')]/li/a");
+		foreach($btaTitles as $title) {
 			$games[] = new Game(
-				trim($bta_titles->item($i)->nodeValue),
-				floatval(substr($bta_price, 1))
+				str_replace('*', '', trim(preg_replace('/\s+/', ' ', $title->textContent))),
+				floatval(substr($btaPrice->item(0)->nodeValue, 1))
 			);
 		}
-		
-		for($i = 0; $i < $fixed_titles->length; $i++) {
-			$games[] = new Game(
-				trim($fixed_titles->item($i)->nodeValue),
-				floatval(substr($fixed_price, 1))
-			);
-		}
-		
+
 		return $games;
 	
 	}

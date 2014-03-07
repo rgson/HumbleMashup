@@ -20,12 +20,17 @@ class Metacritic {
 		  )
 		);
 		
-		if(!isset($response->body->result->score))
+		if($response->body->result === false || 
+		!isset($response->body->result->score) || 
+		$response->body->result->score === "" ) {
+			
 			$score = null;
-		if($response->body->result->score === "")
-			$score = null;
-		else
+			
+		} else {
+			
 			$score = (int)$response->body->result->score;
+		
+		}
 		
 		self::saveScoreToCache($title, $score);
 		return $score;

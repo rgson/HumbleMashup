@@ -51,7 +51,7 @@ function score_color($game) {
 	
 	<div class="bundles">
 	
-		<?php foreach($bundles as $bundle) { ?>
+		<?php if(!empty($bundles)) foreach($bundles as $bundle) { ?>
 		<div class="bundle">
 		
 			<div class="header">
