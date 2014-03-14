@@ -115,10 +115,10 @@ class HumbleBundle {
 	}
 	
 	private static function getWeeklyBundleGames($dom) {
-		
+	
 		$games = array();
 		
-		$basicTitles = $dom->query("//div[@class='tiers']/div[@class='constrain-width' and not(contains(h3/@class,'bta-info'))]/ul[contains(@class, 'game-boxes')]/li/a");
+		$basicTitles = $dom->query("//div[@class='tiers']/div[@class='constrain-width' and not(contains(h3/@class,'bta-info'))]/ul[contains(@class, 'game-boxes')]/li/a[not(contains(span/@class,'fixed-price-info'))]/text()[normalize-space()]");
 		foreach($basicTitles as $title) {
 			$games[] = new Game(
 				str_replace('*', '', trim(preg_replace('/\s+/', ' ', $title->textContent)))
@@ -126,11 +126,20 @@ class HumbleBundle {
 		}
 		
 		$btaPrice = $dom->query("//span[@class='price bta']");
-		$btaTitles = $dom->query("//div[@class='tiers']/div[@class='constrain-width' and contains(h3/@class,'bta-info')]/ul[contains(@class, 'game-boxes')]/li/a");
+		$btaTitles = $dom->query("//div[@class='tiers']/div[@class='constrain-width' and contains(h3/@class,'bta-info')]/ul[contains(@class, 'game-boxes')]/li/a/text()[normalize-space()]");
 		foreach($btaTitles as $title) {
 			$games[] = new Game(
 				str_replace('*', '', trim(preg_replace('/\s+/', ' ', $title->textContent))),
 				floatval(substr($btaPrice->item(0)->nodeValue, 1))
+			);
+		}
+		
+		$fixedPrice = $dom->query("//span[@class='price fixed']");
+		$fixedTitles = $dom->query("//div[@class='tiers']/div[@class='constrain-width' and not(contains(h3/@class,'bta-info'))]/ul[contains(@class, 'game-boxes')]/li/a[contains(span/@class,'fixed-price-info')]/text()[normalize-space()]");
+		foreach($fixedTitles as $title) {
+			$games[] = new Game(
+				str_replace('*', '', trim(preg_replace('/\s+/', ' ', $title->textContent))),
+				floatval(substr($fixedPrice->item(0)->nodeValue, 1))
 			);
 		}
 
