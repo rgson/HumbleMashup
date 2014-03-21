@@ -11,10 +11,13 @@ if(isset($_GET['login']))
 else if(isset($_GET['logout']))
 	SteamLogin::logout();
 
-$apiUrl = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '/api/v1/bundles';
+//$apiUrl = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '/api/v1/bundles';
 
-if(isset($_SESSION['steamid']))
-	$apiUrl = $apiUrl . '?steamid=' . $_SESSION['steamid'];
+//if(isset($_SESSION['steamid']))
+//	$apiUrl = $apiUrl . '?steamid=' . $_SESSION['steamid'];
+
+// Test data:
+$apiUrl = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '/backup/bundles-mix.json';
 	
 $bundles = json_decode(file_get_contents($apiUrl), true);
 $bundles = $bundles['bundles'];
@@ -61,6 +64,9 @@ function score_color($game) {
 			</div>
 			
 			<div class="games">
+				<?php if(count($bundle['games']) == 0) { ?>
+				<p>This bundle contains no games.</p>
+				<?php } ?>
 				<?php foreach($bundle['games'] as $game) { ?>
 				<div class="game">
 
