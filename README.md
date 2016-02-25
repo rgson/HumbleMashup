@@ -1,4 +1,4 @@
-humblemashup
+HumbleMashup
 ============
 A mashup service combining information from Humble Bundle, Steam and Metacritic.
 
